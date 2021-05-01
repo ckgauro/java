@@ -31,6 +31,9 @@ dependencies {
 	testImplementation('org.junit.jupiter:junit-jupiter:5.5.1')
 	testCompile group: 'org.mockito', name: 'mockito-core', version: '3.2.4'
 	testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.2.4'
+	// https://mvnrepository.com/artifact/net.sourceforge.plantuml/plantuml
+	implementation group: 'net.sourceforge.plantuml', name: 'plantuml', version: '6703'
+
 
 }
 

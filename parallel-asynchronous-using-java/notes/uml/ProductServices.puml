@@ -2,6 +2,7 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
+
 :ClickServlet.handleRequest();
 :new page;
 if (Page.onSecurityCheck) then (true)
@@ -31,6 +32,8 @@ else
     :Render page template;
   endif
 endif
+
+
 
 stop
 

@@ -1,0 +1,14 @@
+@startuml
+object Client
+object "Product Services" as p2
+object "ProductInfo service" as pinfo
+object "Review Service" as revieS
+
+p2 : name = "Product"
+
+Client --> p2 : "ProductID"
+
+p2 --> pinfo
+p2 --> revieS
+
+@enduml
