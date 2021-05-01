@@ -24,6 +24,14 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// StopWatch
+	implementation('org.apache.commons:commons-lang3:3.0')
+
+	//junit5-dependencies
+	testImplementation('org.junit.jupiter:junit-jupiter:5.5.1')
+	testCompile group: 'org.mockito', name: 'mockito-core', version: '3.2.4'
+	testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.2.4'
+
 }
 
 test {
