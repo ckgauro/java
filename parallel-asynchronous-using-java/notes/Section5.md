@@ -84,7 +84,7 @@ https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/s
 
 -------------
 
-- []   #Chapter 13
+- [x]   #Chapter 13
 * Fork/Join Framework
 1.  This got introduced as part of Java7
 2.  This is an extension of ExecutorService
@@ -99,12 +99,17 @@ https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/s
 * What is Data Parallelism?
 1. Data Parallelism is a concept where a given **Task** is recursively split into **SubTasks** until it reaches it leaset possible size and
 execute those tasks in parallel.
-   
+
+2.  Basically it uses the **divide and conquer** approach   
 
 * WorkStealing
-[image]
+  Work stealing was introduced in Java with the aim of reducing contention in multi-threaded applications. This is done using the fork/join framework.
 * ForkJoin Task
-[image]
+1.  ForkJoin Task represents part of the data and  its computation
+2.  Types of tasks to sumbit to ForkJoin Pool 
+> ForkJoinTask
+- RecursiveTask -> Task that return a value
+- RecursiveAction -> Task that does not return a value;
 
 
 -------------
