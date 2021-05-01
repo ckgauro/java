@@ -8,8 +8,8 @@
 --------
 #Chapter 9
 
-[Diagram](./ProductService.uml)
-<img src="./ProductService.uml">
+[Diagram](uml/ProductService.uml)
+<img src="uml/ProductService.uml">
 * Run com.gauro.demo.service.ProductService 
 > Find Time taken
 ``` 
