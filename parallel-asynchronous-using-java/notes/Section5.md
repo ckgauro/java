@@ -9,6 +9,7 @@
 #Chapter 9
 
 [Diagram](./ProductService.uml)
+<img src="notes/ProductService.uml">
 * Run com.gauro.demo.service.ProductService 
 > Find Time taken
 ``` 
