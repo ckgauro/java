@@ -22,7 +22,9 @@ public class StringTransformExample {
             String newValue=addNameLengthTransform(name);
             resultList.add(newValue);
         });
-
+        stopWatch.stop();
+        log("Final Result : "+ resultList);
+        log("Total Time Taken : "+ stopWatch.getTime());
 
     }
     private static String addNameLengthTransform(String name){
