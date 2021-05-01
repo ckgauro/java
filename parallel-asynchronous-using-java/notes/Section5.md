@@ -1,5 +1,5 @@
 #Section 5  --Ongoing
-#Chapter 8   --Done
+[x] #Chapter 8  
 
 ## Section Overview
 * Covers Asynchronous and Prallel Programming prior Java 8
@@ -7,7 +7,7 @@
 * Covers Theory and Hands On
 
 --------
-#Chapter 9  --Done
+[x]  #Chapter 9  --Done
 
 [UML Diagram](uml/ProductService.uml)
 * Run com.gauro.demo.service.ProductService 
@@ -36,6 +36,12 @@ https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/s
 
 * Limitations Of Thread
 1.  Create the thread
+2.  Start the thread
+3.  Join the thread
 
+* Threads are expensive
+1.  Threads have their own runtime-stack , memory, registers and more
+
+**THread Pool was created specifically to solve this problem**
 
 
