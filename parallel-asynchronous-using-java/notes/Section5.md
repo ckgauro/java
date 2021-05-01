@@ -1,5 +1,5 @@
 #Section 5  --Ongoing
-[x] #Chapter 8  
+- [x] #Chapter 8  
 
 ## Section Overview
 * Covers Asynchronous and Prallel Programming prior Java 8
@@ -7,7 +7,7 @@
 * Covers Theory and Hands On
 
 --------
-[x]  #Chapter 9  --Done
+- [x]  #Chapter 9  --Done
 
 [UML Diagram](uml/ProductService.uml)
 * Run com.gauro.demo.service.ProductService 
