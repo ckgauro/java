@@ -1,4 +1,5 @@
-#Chapter 8
+#Section 5  --Ongoing
+#Chapter 8   --Done
 
 ## Section Overview
 * Covers Asynchronous and Prallel Programming prior Java 8
@@ -6,9 +7,9 @@
 * Covers Theory and Hands On
 
 --------
-#Chapter 9
+#Chapter 9  --Done
 
-[Diagram](uml/ProductService.uml)
+[UML Diagram](uml/ProductService.uml)
 * Run com.gauro.demo.service.ProductService 
 > Find Time taken
 ``` 
@@ -18,4 +19,23 @@
 
 ```
 --------
-#Chapter 9
+#Chapter 10  --Ongoing
+
+* Threads API
+1.  Threads API got introduced in JAVA1
+2.  Threads are basically used to offload the blocking tasks as background tasks
+3.  Threads allowed the developers to write asynchronous style of code
+
+https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/src/main/java/com/learnjava/thread/ProductServiceUsingThread.java
+
+* Run com.gauro.demo.service.ProductServiceUsingThread
+
+-------------
+
+#Chapter 11  
+
+* Limitations Of Thread
+1.  Create the thread
+
+
+
