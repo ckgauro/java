@@ -7,7 +7,7 @@
 * Covers Theory and Hands On
 
 --------
-- [x]  #Chapter 9  --Done
+- [x]  #Chapter 9  
 
 [UML Diagram](uml/ProductService.uml)
 * Run com.gauro.demo.service.ProductService 
@@ -19,7 +19,7 @@
 
 ```
 --------
-#Chapter 10  --Ongoing
+- [x]   #Chapter 10  
 
 * Threads API
 1.  Threads API got introduced in JAVA1
@@ -29,11 +29,15 @@
 https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/src/main/java/com/learnjava/thread/ProductServiceUsingThread.java
 
 * Run com.gauro.demo.service.ProductServiceUsingThread
+``` 
+> Task :ProductServiceUsingThread.main()
+11:04:05.311 [main] INFO com.gauro.demo.util.LoggerUtil - [main] - Total Time Taken:1006
+11:04:05.359 [main] INFO com.gauro.demo.util.LoggerUtil - [main] - Product is Product(productId=ABC123, productInfo=ProductInfo(productId=ABC123, productOptions=[ProductOption(productionOptionId=1, size=64GB, color=Black, price=699.99, inventory=null), ProductOption(productionOptionId=2, size=128GB, color=Black, price=749.99, inventory=null)]), review=Review(noOfReviews=200, overallRating=4.5))
 
+```
 -------------
 
-#Chapter 11  
-
+- [x]   #Chapter 11  
 * Limitations Of Thread
 1.  Create the thread
 2.  Start the thread
@@ -42,6 +46,73 @@ https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/s
 * Threads are expensive
 1.  Threads have their own runtime-stack , memory, registers and more
 
-**THread Pool was created specifically to solve this problem**
+**Thread Pool was created specifically to solve this problem**
+
+* Thread Pool
+
+1.  THread Pool is a group of threads created and readily available.
+2.  CPU Intensive Tasks
+> ThreadPool Size=No of Cores
+3.  I/O task
+> ThreadPool Size > No of Cores
+4.  What are the benefits of thread pool?
+> No need to manually create, start and join the threads
+> Achieving Concurrency in your application.
+
+* ExecutorService
+1.  Released as part of Java5
+2.  ExecutorService in Java is an Asynchronous Task Execution Engine
+3.  It provides a way to asynchronously execute tasks and provides the results in a much simpler way compared to threads.
+4.  This enabled coarse-grained task based parallelism in Java
 
 
+
+-------------
+
+- [x]   #Chapter 12
+  https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/src/main/java/com/learnjava/executor/ProductServiceUsingExecutor.java
+    * Run com.gauro.demo.executor.ProductServiceUsingExecutor
+* ExecutorService
+
+``` 
+> Task :ProductServiceUsingExecutor.main()
+13:51:38.730 [main] INFO com.gauro.demo.util.LoggerUtil - [main] - Total Time Taken: 1013
+13:51:38.813 [main] INFO com.gauro.demo.util.LoggerUtil - [main] - Product isProduct(productId=ABC123, productInfo=ProductInfo(productId=ABC123, productOptions=[ProductOption(productionOptionId=1, size=64GB, color=Black, price=699.99, inventory=null), ProductOption(productionOptionId=2, size=128GB, color=Black, price=749.99, inventory=null)]), review=Review(noOfReviews=200, overallRating=4.5))
+
+```
+
+
+-------------
+
+- []   #Chapter 13
+* Fork/Join Framework
+1.  This got introduced as part of Java7
+2.  This is an extension of ExecutorService
+3.  Fork/Join framework is designed to achieve **Data Parallelism**
+4.  ExecutorService is designed to achieve **Task Based Parallelism**
+``` 
+ Future<ProductInfo> productInfoFuture=executorService.submit(()->productInfoService.retrieveProductInfo(productId));
+ Future<Review> reviewFuture=executorService.submit(()->reviewService.retrieveReviews(productId));
+        
+```
+
+* What is Data Parallelism?
+1. Data Parallelism is a concept where a given **Task** is recursively split into **SubTasks** until it reaches it leaset possible size and
+execute those tasks in parallel.
+   
+
+* WorkStealing
+[image]
+* ForkJoin Task
+[image]
+
+
+-------------
+
+- []   #Chapter 14
+
+* Run com.gauro.demo.forkjoin.StringTransformExample
+
+https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/src/main/java/com/learnjava/forkjoin/ForkJoinUsingRecursion.java
+
+* Run com.gauro.demo.forkjoin.ForkJoinUsingRecursion
