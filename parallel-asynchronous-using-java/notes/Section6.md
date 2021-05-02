@@ -66,7 +66,7 @@
 
 
 ------------
-- [] #Chapter 17
+- [x] #Chapter 17
 Why Unit Tests
 1. Unit Testing allows you to programmaticallt test your code
 2. Manual Testing slows down the development and delivery.
@@ -78,4 +78,4 @@ Why Unit Tests
 
 ------------
 - [] #Chapter 18
-{revise}
+
