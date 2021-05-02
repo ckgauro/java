@@ -1,6 +1,7 @@
 package com.gauro.demo.forkjoin;
 
 import com.gauro.demo.util.DataSet;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import static com.gauro.demo.util.LoggerUtil.log;
 /**
  * @author Chandra
  */
+@Slf4j
 public class ForkJoinUsingRecursion extends RecursiveTask<List<String>> {
     private List<String> inputList;
 
@@ -22,13 +24,16 @@ public class ForkJoinUsingRecursion extends RecursiveTask<List<String>> {
         this.inputList = inputList;
     }
 
-    @Override
+
     /**
      * Recursively split the list and runs each half as a ForkJoinTask
      * Right way of using Fork/Join Task
      */
+    @Override
     protected List<String> compute() {
+        log.info("Compute starts ===>");
         if (this.inputList.size() <= 1) {
+            log.info("compute ====>  "+this.inputList.size());
             List<String> resultList = new ArrayList<>();
             inputList.forEach(name -> resultList.add(transform(name)));
             return resultList;
