@@ -1,4 +1,4 @@
-- [] #Section 6
+- [x] #Section 6
 - [x] #Chapter 15
 * Streams API
 1. Streams API got introduced in Java8
@@ -74,8 +74,17 @@ Why Unit Tests
   
 [press command +enter to Generate popMenu of corresponding method]
 * https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/src/test/java/com/learnjava/parallelstreams/ParallelismExampleTest.java
-* [Run Test] com.gauro.demo.parallelstreams.ParallelismExampleTest  
+* [Run Test] com.gauro.demo.parallelstreams.ParallelismExampleTest.stringTransform  
 
 ------------
-- [] #Chapter 18
+- [x] #Chapter 18
+* https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/src/test/java/com/learnjava/parallelstreams/ParallelismExampleTest.java
+* [Run Test] com.gauro.demo.parallelstreams.ParallelismExampleTest.stringTransform_1
+
+``` 
+
+13:08:41.707 [Test worker] INFO com.gauro.demo.util.LoggerUtil - [Test worker] - Total Time taken: 2025
+13:08:42.229 [Test worker] INFO com.gauro.demo.util.LoggerUtil - [Test worker] - Total Time taken: 506
+
+```
 
