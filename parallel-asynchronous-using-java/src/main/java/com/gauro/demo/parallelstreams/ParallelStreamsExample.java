@@ -14,7 +14,7 @@ public class ParallelStreamsExample {
         return namesList.parallelStream()
                 .map(this::transform)
                 //.parallel()
-                .sequential()
+               // .sequential()
                 .collect(Collectors.toList());
     }
 

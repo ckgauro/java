@@ -10,7 +10,7 @@
 2. ParallelStreams are designed to solve **Data Parallelism**
 
 ------------
-- [] #Chapter 16
+- [x] #Chapter 16
 * https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/src/main/java/com/learnjava/parallelstreams/ParallelStreamsExample.java
 * Run com.gauro.demo.parallelstreams.ParallelStreamsExample 
 ``` 
@@ -68,7 +68,9 @@
 ------------
 - [] #Chapter 17
 Why Unit Tests
- {Revise} 
+1. Unit Testing allows you to programmaticallt test your code
+2. Manual Testing slows down the development and delivery.
+3. Unit Testing allows the developer or the app team to make enhacemnets to the existing code easily and faster
   
 [press command +enter to Generate popMenu of corresponding method]
 * https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/src/test/java/com/learnjava/parallelstreams/ParallelismExampleTest.java
