@@ -1,4 +1,4 @@
-#Section 5  --Ongoing
+- [x] #Section 5  
 - [x] #Chapter 8  
 
 ## Section Overview
