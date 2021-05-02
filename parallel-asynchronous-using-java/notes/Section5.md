@@ -114,7 +114,7 @@ execute those tasks in parallel.
 
 -------------
 
-- []   #Chapter 14
+- [x]   #Chapter 14
 
 * Run com.gauro.demo.forkjoin.StringTransformExample
 
@@ -129,3 +129,54 @@ execute those tasks in parallel.
 https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/src/main/java/com/learnjava/forkjoin/ForkJoinUsingRecursion.java
 
 * Run com.gauro.demo.forkjoin.ForkJoinUsingRecursion
+
+*   The fork-join framework allows to break a certain task on several workers and then wait for the result to combine them. It leverages multi-processor machine's capacity to great extent. Following are the core concepts and objects used in fork-join framework.
+- Fork
+```
+Fork is a process in which a task splits itself into smaller and independent sub-tasks which can be executed concurrently.
+
+Syntax
+Sum left  = new Sum(array, low, mid);
+left.fork();
+Here Sum is a subclass of RecursiveTask and left.fork() spilts the task into sub-tasks.
+``` 
+- Join
+``` 
+Join is a process in which a task join all the results of sub-tasks once the subtasks have finished executing, otherwise it keeps waiting.
+
+Syntax
+left.join();
+Here left is an object of Sum class.
+
+```
+
+- ForkJoinPool
+``` 
+it is a special thread pool designed to work with fork-and-join task splitting.
+
+Syntax
+ForkJoinPool forkJoinPool = new ForkJoinPool(4);
+Here a new ForkJoinPool with a parallelism level of 4 CPUs.
+
+```
+- RecursiveAction
+``` 
+RecursiveAction represents a task which does not return any value.
+
+Syntax
+class Writer extends RecursiveAction {
+@Override
+protected void compute() { }
+}
+``` 
+- RecursiveTask
+``` 
+
+RecursiveTask represents a task which returns a value.
+
+Syntax
+class Sum extends RecursiveTask<Long> {
+@Override
+protected Long compute() { return null; }
+}
+```
