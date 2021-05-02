@@ -2,6 +2,7 @@ package com.gauro.demo.parallelstreams;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.gauro.demo.util.CommonUtil.*;
 import static com.gauro.demo.util.LoggerUtil.log;
@@ -22,6 +23,13 @@ public class ParallelStreamsExample {
         delay(500);
         log("Transforming: "+name);
         return name.length()+"-"+name;
+    }
+    public List<String> stringTransform_1(List<String> namesList, boolean isParallel){
+        Stream<String> nameStream=namesList.stream();
+        if(isParallel)
+            nameStream.parallel();
+        return nameStream.map(this::transform)
+                .collect(Collectors.toList());
     }
 
     public static void main(String[] args) {
