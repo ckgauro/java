@@ -96,7 +96,15 @@ A parallel Stream is a stream that splits its elements into multiple chunks, pro
 --------
 
 - [] #Chapter 26
-{revise}
+** Collect() vs Reduce()
+  
+  |Collect|Reduce|
+  | Part of Sreams API| Part of Streams API|
+  
+  | Collect | Reduce  | 
+  | ------- | --- |
+  | Part of Streams API | Part of Streams API|
+
   [Reduce vs Collect part 1](https://www.youtube.com/watch?v=oWlWEKNM5Aw) , [Reduce vs Collect part 2](https://www.youtube.com/watch?v=H7VbRz9aj7c)
 --------
 
