@@ -18,7 +18,17 @@ A parallel Stream is a stream that splits its elements into multiple chunks, pro
 
 
   2 **Execute** the data chunks
+
+  - Data chunks are applied to the Stream Pipeline and the **Intermediate**  operations executed in a **Common ForkJoin Pool**
+
+
   3 **Combine** the result
+  
+  - Combine the executed results into a final result
+  - Combine phase is Streams API maps to **terminal** operations
+  - Uses collect() and reduce() functions
+    
+    - **collect(toList())**
 
 
   
