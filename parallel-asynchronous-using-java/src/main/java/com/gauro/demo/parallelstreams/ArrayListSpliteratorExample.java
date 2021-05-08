@@ -26,6 +26,7 @@ public class ArrayListSpliteratorExample {
             return i*multiplyValue;
         }).collect(Collectors.toList());
         timeTaken();
+        stopWatchReset();
         log("Completed");
         return resultList;
     }

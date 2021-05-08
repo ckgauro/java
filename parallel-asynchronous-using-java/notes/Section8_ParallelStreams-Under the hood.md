@@ -35,9 +35,50 @@ A parallel Stream is a stream that splits its elements into multiple chunks, pro
 --------
 
 
-- [] #Chapter 23
-* Streams API
-  {revise}
-    
+- [x] #Chapter 23
+
 - https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/src/main/java/com/learnjava/parallelstreams/ArrayListSpliteratorExample.java
-  
+- https://github.com/dilipsundarraj1/parallel-asynchronous-using-java/blob/final/src/test/java/com/learnjava/parallelstreams/ArrayListSpliteratorExampleTest.java
+- [Run Test] com.gauro.demo.parallelstreams.multiplyEachValue
+``` 
+11:41:46.417 [Test worker] INFO com.gauro.demo.util.LoggerUtil - [Test worker] - Total Time taken: 57
+11:41:46.419 [Test worker] INFO com.gauro.demo.util.LoggerUtil - [Test worker] - completed
+11:41:46.452 [Test worker] INFO com.gauro.demo.util.LoggerUtil - [Test worker] - Total Time taken: 22
+11:41:46.453 [Test worker] INFO com.gauro.demo.util.LoggerUtil - [Test worker] - completed
+11:41:46.536 [Test worker] INFO com.gauro.demo.util.LoggerUtil - [Test worker] - Total Time taken: 80
+11:41:46.536 [Test worker] INFO com.gauro.demo.util.LoggerUtil - [Test worker] - completed
+11:41:46.563 [Test worker] INFO com.gauro.demo.util.LoggerUtil - [Test worker] - Total Time taken: 25
+11:41:46.563 [Test worker] INFO com.gauro.demo.util.LoggerUtil - [Test worker] - completed
+11:41:46.594 [Test worker] INFO com.gauro.demo.util.LoggerUtil - [Test worker] - Total Time taken: 28
+11:41:46.594 [Test worker] INFO com.gauro.demo.util.LoggerUtil - [Test worker] - completed 
+```
+
+--------
+
+- [x] #Chapter 24
+    
+    - Invoking **parallelStream()** does not guarantee faster performance of your code
+    - Need to perform additional steps compared to sequential
+    - Splitting, Executing and Combining
+
+``` 
+
+```
+
+--------
+
+- [x] #Chapter 25
+    *** Parallel Streams - Final Computation Result Order
+  - The Order of the collection depends on:
+    - Type of Colelction
+    - Spliterator Implementation of the collection
+  - Example : ArrayList
+    - Type of Collection - **Ordered**
+    - Spliterator Implementation -Ordered Spliterator Implementation
+  - Example: Set
+    - Type of Collection - ** UnOrdered**
+    - Spliterator Implementation -UnOrdered Spliterator Implementation
+    
+
+
+- [Run Test] com.gauro.demo.parallelstreams.multiplyEachValue.LinkedListSpliteratorExampleTest
