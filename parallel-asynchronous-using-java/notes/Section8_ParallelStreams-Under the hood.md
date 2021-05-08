@@ -12,7 +12,8 @@ A parallel Stream is a stream that splits its elements into multiple chunks, pro
      Spliterator is the new interface introduced in jdk8 that traverses and partitions elements of a source. The name itself suggests that, these are the iterators that can be splitted as and when require. As like Iterator, Spliterator is also used for traversing elements but meant to be used within stream only. Spliterator has defined some important methods that drives both sequential and parallel stream processing.
     
     ```
-(Split) [https://java-8-tips.readthedocs.io/en/stable/parallelization.html]
+
+[Split](https://java-8-tips.readthedocs.io/en/stable/parallelization.html)
 https://www.baeldung.com/java-spliterator
 https://howtodoinjava.com/java/collections/java-spliterator/
 
