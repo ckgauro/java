@@ -16,9 +16,9 @@ meant to be used within stream only. Spliterator has defined some important meth
     
 ```
 
-[Split](https://java-8-tips.readthedocs.io/en/stable/parallelization.html)
-https://www.baeldung.com/java-spliterator
-https://howtodoinjava.com/java/collections/java-spliterator/
+[java-8-tips](https://java-8-tips.readthedocs.io/en/stable/parallelization.html)
+[baeldung](https://www.baeldung.com/java-spliterator)
+[howtodoinjava](https://howtodoinjava.com/java/collections/java-spliterator/)
 
 
   2 **Execute** the data chunks
