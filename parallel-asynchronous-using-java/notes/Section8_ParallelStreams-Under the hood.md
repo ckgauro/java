@@ -9,12 +9,17 @@ Thus you can automatically partition the workload of a given operation on all th
  ```
 ***  parallelStream(): It divides into following three group 
   1. **Split** the data into chunks
-```
+
    Spliterator is the new interface introduced in jdk8 that traverses and partitions elements of a source. The name itself suggests that,
 these are the iterators that can be splitted as and when require. As like Iterator, Spliterator is also used for traversing elements but 
 meant to be used within stream only. Spliterator has defined some important methods that drives both sequential and parallel stream processing.
     
-```
+
+
+    - Data Source is split into small data chunks
+      - Example - **List Collection** split into chunks of elements to **size 1**
+    - This is done using **Spliterators**
+      - For ArrayList, the **Spliterator**  is **ArrayListSpliterator** 
 
 [java-8-tips](https://java-8-tips.readthedocs.io/en/stable/parallelization.html)
 [baeldung](https://www.baeldung.com/java-spliterator)
