@@ -1,29 +1,19 @@
 - [] #Section 8
 - [x] #Chapter 22
 * ParallelStreams-How it works?
-``` 
-A parallel Stream is a stream that splits its elements into multiple chunks, process each chunk with different thread. 
-Thus you can automatically partition the workload of a given operation on all the cores of your multicore processor and keep all of them
- equally busy. Getting parallel stream is very easy, calling parallelStream() method on collection classes or parallel() method on 
- sequential stream returns a parallel stream as demonstrated below.
- ```
+
+A parallel Stream is a stream that splits its elements into multiple chunks, process each chunk with different thread. Thus you can automatically partition the workload of a given operation on all the cores of your multicore processor and keep all of them equally busy. Getting parallel stream is very easy, calling parallelStream() method on collection classes or parallel() method on sequential stream returns a parallel stream as demonstrated below.
+
 ***  parallelStream(): It divides into following three group 
   1. **Split** the data into chunks
 
-   Spliterator is the new interface introduced in jdk8 that traverses and partitions elements of a source. The name itself suggests that,
-these are the iterators that can be splitted as and when require. As like Iterator, Spliterator is also used for traversing elements but 
-meant to be used within stream only. Spliterator has defined some important methods that drives both sequential and parallel stream processing.
-    
-
-
+   Spliterator is the new interface introduced in jdk8 that traverses and partitions elements of a source. The name itself suggests that, these are the iterators that can be splitted as and when require. As like Iterator, Spliterator is also used for traversing elements but meant to be used within stream only. Spliterator has defined some important methods that drives both sequential and parallel stream processing.
     - Data Source is split into small data chunks
       - Example - **List Collection** split into chunks of elements to **size 1**
     - This is done using **Spliterators**
       - For ArrayList, the **Spliterator**  is **ArrayListSpliterator** 
-
-[java-8-tips](https://java-8-tips.readthedocs.io/en/stable/parallelization.html)
-[baeldung](https://www.baeldung.com/java-spliterator)
-[howtodoinjava](https://howtodoinjava.com/java/collections/java-spliterator/)
+    - Additional resources
+      - [java-8-tips](https://java-8-tips.readthedocs.io/en/stable/parallelization.html), [baeldung](https://www.baeldung.com/java-spliterator), [howtodoinjava](https://howtodoinjava.com/java/collections/java-spliterator/)
 
 
   2 **Execute** the data chunks
