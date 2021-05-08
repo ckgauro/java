@@ -25,6 +25,7 @@ class CheckoutServiceTest {
 
     @Test
     void no_of_cores(){
+        //Display no of cores
         System.out.println("no of cores:"+Runtime.getRuntime().availableProcessors());
     }
 
@@ -58,7 +59,7 @@ class CheckoutServiceTest {
         CheckoutResponse checkoutResponse=checkoutService.checkout(cart);
 
         //then
-        assertEquals(CheckoutStatus.FAILURE,checkoutResponse.getCheckoutStatus());
+        assertEquals(CheckoutStatus.SUCCESS,checkoutResponse.getCheckoutStatus());
 
     }
     @Test

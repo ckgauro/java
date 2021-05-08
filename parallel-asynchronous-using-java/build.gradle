@@ -26,6 +26,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	// StopWatch
 	implementation('org.apache.commons:commons-lang3:3.0')
+	//webclient dependencies
+	implementation 'org.springframework:spring-webflux:5.2.9.RELEASE'
+	implementation 'io.projectreactor.netty:reactor-netty:0.9.12.RELEASE'
+
 
 	//junit5-dependencies
 	testImplementation('org.junit.jupiter:junit-jupiter:5.5.1')
