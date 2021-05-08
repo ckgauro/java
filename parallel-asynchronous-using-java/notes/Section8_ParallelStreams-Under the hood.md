@@ -1,4 +1,4 @@
-- [] #Section 8
+- [x] #Section 8
 - [x] #Chapter 22
 * ParallelStreams-How it works?
 
@@ -63,9 +63,6 @@ A parallel Stream is a stream that splits its elements into multiple chunks, pro
 
 - [Run Test] com.gauro.demo.parallelstreams.multiplyEachValue.LinkedListSpliteratorExampleTest
 
-``` 
-
-```
 
 --------
 
@@ -95,15 +92,19 @@ A parallel Stream is a stream that splits its elements into multiple chunks, pro
 
 --------
 
-- [] #Chapter 26
+- [x] #Chapter 26
 ** Collect() vs Reduce()
   
   |Collect|Reduce|
-  | Part of Sreams API| Part of Streams API|
-  
-  | Collect | Reduce  | 
   | ------- | --- |
-  | Part of Streams API | Part of Streams API|
+  | Part of Sreams API| Part of Streams API|  
+  | Used as a terminal operation in **Streams API** | Used as a terminal operation in **Streams API**|
+  | Produce as single Result |  Produce as single Result|
+  |Result is produced in a mutable fashion|Result is produced in a mutable fashion|
+  |Feature rich and used for many different use cases| Reduce the computation into a single value|Reduce the computation into a single value|
+  |Example|Example|
+   |  Collect(toList()) , collect(toSet()) |sum->reduce(0.0(x,y)->x+y| 
+  |  collect(summingDouble(Double::doubleValue)); |Multiply->reduce(1,(x,y)->x*y| 
 
   [Reduce vs Collect part 1](https://www.youtube.com/watch?v=oWlWEKNM5Aw) , [Reduce vs Collect part 2](https://www.youtube.com/watch?v=H7VbRz9aj7c)
 --------
