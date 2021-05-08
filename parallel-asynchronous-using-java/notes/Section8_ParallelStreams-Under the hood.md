@@ -61,6 +61,8 @@ A parallel Stream is a stream that splits its elements into multiple chunks, pro
     - Need to perform additional steps compared to sequential
     - Splitting, Executing and Combining
 
+- [Run Test] com.gauro.demo.parallelstreams.multiplyEachValue.LinkedListSpliteratorExampleTest
+
 ``` 
 
 ```
@@ -78,7 +80,39 @@ A parallel Stream is a stream that splits its elements into multiple chunks, pro
   - Example: Set
     - Type of Collection - ** UnOrdered**
     - Spliterator Implementation -UnOrdered Spliterator Implementation
+
+- [Run] com.gauro.demo.parallelstreams.ParallelStreamResultOrder
+``` 
+> Task :ParallelStreamResultOrder.main()
+13:03:58.583 [main] INFO com.gauro.demo.util.LoggerUtil - [main] - inputList : [1, 2, 3, 4, 5, 6, 7, 8, 9]
+13:03:58.595 [main] INFO com.gauro.demo.util.LoggerUtil - [main] - result :[2, 4, 6, 8, 10, 12, 14, 16, 18]
+13:03:58.596 [main] INFO com.gauro.demo.util.LoggerUtil - [main] - inputList  Set: [9, 8, 7, 6, 5, 4, 3, 2, 1]
+13:03:58.598 [main] INFO com.gauro.demo.util.LoggerUtil - [main] - result Set : [16, 2, 18, 4, 6, 8, 10, 12, 14]
+13:03:58.598 [main] INFO com.gauro.demo.util.LoggerUtil - [main] - inputList : [1, 2, 3, 4, 5, 6, 7, 8, 9]
+13:03:58.598 [main] INFO com.gauro.demo.util.LoggerUtil - [main] - inputList : [9, 8, 7, 6, 5, 4, 3, 2, 1]
+13:03:58.599 [main] INFO com.gauro.demo.util.LoggerUtil - [main] - result : [18, 16, 14, 12, 10, 8, 6, 4, 2]
+```
+
+--------
+
+- [] #Chapter 26
+{revise}
+  [Reduce vs Collect part 1](https://www.youtube.com/watch?v=oWlWEKNM5Aw) , [Reduce vs Collect part 2](https://www.youtube.com/watch?v=H7VbRz9aj7c)
+--------
+
+- [x] #Chapter 27
+  
+    - [Run] com.gauro.demo.service.CheckoutService
+
+- [] #Chapter 28
+  {revise}
+  Identity in reduce()
+  Identity gives you the same   
+
+    - [Run Test] com.gauro.demo.parallelstreams.ReduceExampleTest
     
+- [] #Chapter 29
+  {revise}
 
+   - [Run Test] com.gauro.demo.parallelstreams.ParallelStreamPerformanceTest
 
-- [Run Test] com.gauro.demo.parallelstreams.multiplyEachValue.LinkedListSpliteratorExampleTest
