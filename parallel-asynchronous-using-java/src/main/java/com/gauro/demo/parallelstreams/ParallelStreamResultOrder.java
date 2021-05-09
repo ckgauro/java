@@ -39,9 +39,9 @@ public class ParallelStreamResultOrder {
         log("result :"+result);
 
         Set<Integer> inputSet = Set.of(1,2,3,4,5,6,7,8,9);
-        log("inputList : "+inputSet);
+        log("inputList  Set: "+inputSet);
         Set<Integer> resultSEt = setOrder(inputSet);
-        log("result : "+resultSEt);
+        log("result Set : "+resultSEt);
 
         List<Integer> inputList1 = List.of(1,2,3,4,5,6,7,8,9);
         log("inputList : "+inputList1);
