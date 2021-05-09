@@ -1,5 +1,5 @@
 - [] #Section 11 and 12
-- [] #Chapter 34 Introduction to Completable Future
+- [x] #Chapter 34 Introduction to Completable Future
   - ***CompletableFuture***
     - Introduced in Java8
     - CompletableFuture is an **Asynchronous Reactive Function Programming API**
@@ -18,7 +18,7 @@
     - **Message Driven:**
         - Asynchronous computations interact with each through messages in a event-driven style
       
-  - CompleatableFuture API
+  - CompleatableFuture  API categories into three parts
     - **Factory Methods:**
     - Initiate asynchronous computation
     - **Completion Stage Methods:**
@@ -27,8 +27,18 @@
         - Handle Exceptions in an Asynchronous Computation
     
 - [] #Chapter 35 Lets write our first Completable Future
+{revise}
+  -[Run] com.gauro.demo.completablefuture.CompletableFutureHelloWorld
+    
 - [] #Chapter 36 Transform Data using  "thenApply()"
+  {revise}
+  -[Run] com.gauro.demo.completablefuture.CompletableFutureHelloWorld
+  
 - [] #Chapter 37 Unit Testing CompletableFuture using JUnit5
-- [] #Chapter 38 Combing independent Async Tasks using string to the output 
+  -[Run Test] com.gauro.demo.completablefuture.CompletableFutureHelloWorldTest.helloWorld
+  
+- [] #Chapter 38 Combing independent Async Tasks using string to the output
+  {revise}
 - [] #Chapter 39 Combing independent Async Task using "thenCombine"
+
 - [] #Chapter 40 Invoking Async Task using "thenCompose"
