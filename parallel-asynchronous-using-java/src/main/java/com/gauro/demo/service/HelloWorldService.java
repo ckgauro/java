@@ -10,8 +10,9 @@ import static com.gauro.demo.util.LoggerUtil.log;
  */
 public class HelloWorldService {
     public String helloWorld(){
-        delay(100);
+        delay(1000);
         log("inside helloWorld");
+
         return "hello world";
     }
 

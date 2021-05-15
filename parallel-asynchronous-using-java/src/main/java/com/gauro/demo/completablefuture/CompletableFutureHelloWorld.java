@@ -3,6 +3,7 @@ package com.gauro.demo.completablefuture;
 import com.gauro.demo.service.HelloWorldService;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
@@ -197,29 +198,30 @@ public class CompletableFutureHelloWorld {
         timeTaken();
         return result;
     }
+
     public String anyOf() {
         startTimer();
-        CompletableFuture<String> db=CompletableFuture.supplyAsync(()->{
-           delay(1000);
-           log("response from db");
-           return "Hello World";
+        CompletableFuture<String> db = CompletableFuture.supplyAsync(() -> {
+            delay(1000);
+            log("response from db");
+            return "Hello World";
         });
-        CompletableFuture<String> restApi=CompletableFuture.supplyAsync(()->{
+        CompletableFuture<String> restApi = CompletableFuture.supplyAsync(() -> {
             delay(2000);
             log("Response from restAPI");
             return "Hello World";
 
         });
 
-        CompletableFuture<String> soapApi=CompletableFuture.supplyAsync(()->{
-           delay(3000);
-           log("response from soapAPI");
-           return  "Hello World";
+        CompletableFuture<String> soapApi = CompletableFuture.supplyAsync(() -> {
+            delay(3000);
+            log("response from soapAPI");
+            return "Hello World";
         });
-        List<CompletableFuture<String>> cfList=List.of(db,restApi,soapApi);
-        CompletableFuture<Object> cfAllOf=CompletableFuture.anyOf(cfList.toArray(new CompletableFuture[cfList.size()]));
-        String result=(String) cfAllOf.thenApply(v->{
-            if(v instanceof String){
+        List<CompletableFuture<String>> cfList = List.of(db, restApi, soapApi);
+        CompletableFuture<Object> cfAllOf = CompletableFuture.anyOf(cfList.toArray(new CompletableFuture[cfList.size()]));
+        String result = (String) cfAllOf.thenApply(v -> {
+            if (v instanceof String) {
                 return v;
             }
             return null;
@@ -228,6 +230,7 @@ public class CompletableFutureHelloWorld {
         return result;
 
     }
+
     public String helloWorld_1() {
 
         return CompletableFuture.supplyAsync(() -> helloWorldService.helloWorld())//  runs this in a common fork-join pool
@@ -235,13 +238,14 @@ public class CompletableFutureHelloWorld {
                 .join();
 
     }
+
     public CompletableFuture<String> complete(String input) {
-        CompletableFuture<String> completableFuture=new CompletableFuture<>();
-        completableFuture=completableFuture
+        CompletableFuture<String> completableFuture = new CompletableFuture<>();
+        completableFuture = completableFuture
                 .thenApply(String::toUpperCase)
-                .thenApply(result->result.length()+" - "+result);
+                .thenApply(result -> result.length() + " - " + result);
         completableFuture.complete(input);
-        return  completableFuture;
+        return completableFuture;
 
     }
 
@@ -250,8 +254,13 @@ public class CompletableFutureHelloWorld {
         HelloWorldService helloWorldService = new HelloWorldService();
         CompletableFuture.supplyAsync(() -> helloWorldService.helloWorld())
                 .thenApply(String::toUpperCase)
+                .thenApply(result -> {
+                    log("upper case result:" + result);
+                    delay(5000);
+                    return result.toLowerCase();
+                })
                 .thenAccept(result -> {
-                    log("result:" + result);
+                    log("Lower case result:" + result);
                 }).join();
         log("Done");
         delay(2000);

@@ -37,8 +37,22 @@
 |Returns CompletableFuture<T>()|Returns CompletableFuture<Void>|
 
 
-  -[Run] com.gauro.demo.completablefuture.CompletableFutureHelloWorld
-    
+  -[Run] com.gauro.demo.completablefuture.CompletableFutureHelloWorld 
+```Java
+> Task :CompletableFutureHelloWorld.main()
+21:36:23.828 [ForkJoinPool.commonPool-worker-19] INFO com.gauro.demo.util.LoggerUtil - [ForkJoinPool.commonPool-worker-19] - inside helloWorld
+21:36:23.836 [ForkJoinPool.commonPool-worker-19] INFO com.gauro.demo.util.LoggerUtil - [ForkJoinPool.commonPool-worker-19] - upper case result:HELLO WORLD
+21:36:28.838 [ForkJoinPool.commonPool-worker-19] INFO com.gauro.demo.util.LoggerUtil - [ForkJoinPool.commonPool-worker-19] - Lower case result:hello world
+21:36:28.839 [main] INFO com.gauro.demo.util.LoggerUtil - [main] - Done
+
+```
+   -**thenAccept** takes a Consumer and returns a T=Void CF, i.e. one that does not carry a value, only the completion state.
+   -**thenApply** on the other hand takes a Function and returns a CF carrying the return value of the function
+```java
+CompletableFuture<Void>     thenAccept(Consumer<? super T> action)
+<U> CompletableFuture<U>    thenApply(Function<? super T,? extends U> fn)
+```
+
 - [] #Chapter 36 Transform Data using  "thenApply()"
   {revise}
   -[Run] com.gauro.demo.completablefuture.CompletableFutureHelloWorld
