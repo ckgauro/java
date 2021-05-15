@@ -38,7 +38,7 @@
 
 
   -[Run] com.gauro.demo.completablefuture.CompletableFutureHelloWorld 
-```Java
+```
 > Task :CompletableFutureHelloWorld.main()
 21:36:23.828 [ForkJoinPool.commonPool-worker-19] INFO com.gauro.demo.util.LoggerUtil - [ForkJoinPool.commonPool-worker-19] - inside helloWorld
 21:36:23.836 [ForkJoinPool.commonPool-worker-19] INFO com.gauro.demo.util.LoggerUtil - [ForkJoinPool.commonPool-worker-19] - upper case result:HELLO WORLD
@@ -67,8 +67,18 @@ CompletableFuture<Void>     thenAccept(Consumer<? super T> action)
 - [x] #Chapter 37 Unit Testing CompletableFuture using JUnit5
   -[Run Test] com.gauro.demo.completablefuture.CompletableFutureHelloWorldTest.helloWorld
   
-- [] #Chapter 38 Combing independent Async Tasks using string to the output
-  {revise}
-- [] #Chapter 39 Combing independent Async Task using "thenCombine"
+- [x] #Chapter 38 Combing independent Async Tasks using string to the output
+  -[Run Test] com.gauro.demo.completablefuture.CompletableFutureHelloWorldTest.helloWorld_3_async_calls
+- [x] #Chapter 39 Combing independent Async Task using "thenCombine"
+  -[Run Test] com.gauro.demo.completablefuture.CompletableFutureHelloWorldTest.helloWorld_4_async_calls
+- [x] #Chapter 40 Invoking Async Task using "thenCompose"
 
-- [] #Chapter 40 Invoking Async Task using "thenCompose"
+**thenCompose()**
+- Completion Stage method
+- Transform the data from one from to another
+- Input is **Function** Functional Interface
+- Deals with functions that return CompletableFuture
+  - thenApply deals with Function that returns a value
+- Returns CompletableFuture<T>
+  
+  -[Run Test] com.gauro.demo.completablefuture.CompletableFutureHelloWorldTest.helloWorld_4_async_calls

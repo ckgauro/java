@@ -10,6 +10,7 @@ import static com.gauro.demo.util.LoggerUtil.log;
  */
 public class HelloWorldService {
     public String helloWorld(){
+        System.out.println("====helloWorld==");
         delay(1000);
         log("inside helloWorld");
 
@@ -17,12 +18,14 @@ public class HelloWorldService {
     }
 
     public String hello(){
+        System.out.println("====hello==");
         delay(1000);
         log("inside hello");
         return "hello";
     }
 
     public  String world() {
+        System.out.println("====world==");
         delay(1000);
         log("inside world");
         return " world! ";

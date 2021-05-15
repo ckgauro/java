@@ -39,7 +39,10 @@ public class CompletableFutureHelloWorld {
     public String helloWorld_multiple_async_calls() {
         startTimer();
         CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> this.helloWorldService.hello());
+        //delay(1000);
         CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> this.helloWorldService.world());
+        delay(1000);
+        System.out.println("=======helloWorld_multiple_async_calls=======");
 
         String hw = hello.thenCombine(world, (h, w) -> h + w) //(first,second)
                 .thenApply(String::toUpperCase)
@@ -173,11 +176,11 @@ public class CompletableFutureHelloWorld {
         CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> this.helloWorldService.world());
         CompletableFuture<String> hiCompletableFuture = CompletableFuture.supplyAsync(() -> {
             delay(1000);
-            return " HI CompletableFuture!";
+            return "HI CompletableFuture!";
         });
         CompletableFuture<String> byeCompletableFuture = CompletableFuture.supplyAsync(() -> {
             delay(1000);
-            return "Hi CompletableFuture";
+            return " Bye!";
         });
         String hw = hello
                 .thenCombine(world, (h, w) -> h + w)
@@ -204,7 +207,7 @@ public class CompletableFutureHelloWorld {
         startTimer();
         CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> {
             delay(1000);
-            return "Hello";
+            return "Hello ";
         });
         CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(() -> {
             delay(1000);
