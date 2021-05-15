@@ -50,6 +50,23 @@ class CompletableFutureHelloWorldTest {
         String hw=completableFutureHelloWorld.helloWorld_3_async_calls_log();
         assertEquals("HELLO WORLD! HI COMPLETABLEFUTURE!", hw);
     }
+    @Test
+    void helloWorld_3_async_calls_log_async() {
+        String hw=completableFutureHelloWorld.helloWorld_3_async_calls_log_async();
+        assertEquals("HELLO WORLD! HI COMPLETABLEFUTURE!", hw);
+    }
+
+    @Test
+    void helloWorld_3_async_calls_custom_threadPool() {
+        String hw=completableFutureHelloWorld.helloWorld_3_async_calls_custom_threadPool();
+        assertEquals("HELLO WORLD! HI COMPLETABLEFUTURE", hw);
+    }
+    @Test
+    void helloWorld_3_async_calls_custom_threadpool_async() {
+        String hw=completableFutureHelloWorld.helloWorld_3_async_calls_custom_threadpool_async();
+        assertEquals("HELLO WORLD! HI COMPLETABLEFUTURE!", hw);
+    }
+
 
 
 
