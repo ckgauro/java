@@ -27,6 +27,12 @@ class CompletableFutureHelloWorldTest {
             assertEquals("HELLO WORLD",s);
         }).join();
     }
+    @Test
+    void helloWorld_1() {
+        String hw=completableFutureHelloWorld.helloWorld_1();
+        assertEquals("HELLO WORLD",hw);
+    }
+
 
 
 
