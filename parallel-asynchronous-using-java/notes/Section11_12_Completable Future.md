@@ -53,9 +53,14 @@
 CompletableFuture<Void>     thenAccept(Consumer<? super T> action)
 <U> CompletableFuture<U>    thenApply(Function<? super T,? extends U> fn)
 ```
+** CompletableFuture and Reactive Programming
+- **Responsive** 
+ - Fundamentally Asynchronous
+ - Call returns immediately and the response will be sent when its available
 
-- [] #Chapter 36 Transform Data using  "thenApply()"
-  {revise}
+
+- [x] #Chapter 36 Transform Data using  "thenApply()"
+
   -[Run] com.gauro.demo.completablefuture.CompletableFutureHelloWorld
   
 - [] #Chapter 37 Unit Testing CompletableFuture using JUnit5
