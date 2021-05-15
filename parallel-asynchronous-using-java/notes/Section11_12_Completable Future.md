@@ -26,8 +26,17 @@
     - **Exception Methods:**
         - Handle Exceptions in an Asynchronous Computation
     
-- [] #Chapter 35 Lets write our first Completable Future
-{revise}
+- [x] #Chapter 35 Lets write our first Completable Future
+***Completable Future 
+  
+|supplyAsync|thenAccept()|
+|-----------|------------|
+|FactoryMethod|CompletionStage Method|
+|Initiate Asynchronous computation|Chain Asynchronous Computation|
+|Input is **Supplier** functional Interface|Input is **Consumer** Functional Interface. Consumes the result of the previous|
+|Returns CompletableFuture<T>()|Returns CompletableFuture<Void>|
+
+
   -[Run] com.gauro.demo.completablefuture.CompletableFutureHelloWorld
     
 - [] #Chapter 36 Transform Data using  "thenApply()"
