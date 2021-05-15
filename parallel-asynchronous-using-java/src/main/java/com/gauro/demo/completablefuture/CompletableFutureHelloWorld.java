@@ -48,21 +48,42 @@ public class CompletableFutureHelloWorld {
         return hw;
     }
 
+    public String helloWorld_3_async_calls() {
+        startTimer();
+        CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> this.helloWorldService.hello());
+        CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> this.helloWorldService.world());
+        CompletableFuture<String> hiCompletableFuture = CompletableFuture.supplyAsync(() -> {
+            delay(100);
+            return " HI CompletableFuture!";
+        });
+
+        String hw = hello.thenCombine(world, (h, w) -> h + w)
+                .thenCombine(hiCompletableFuture, (previous, current) -> previous + current)
+                .thenApply(String::toUpperCase)
+                .join();
+        timeTaken();
+        return hw;
+
+    }
+
     public String helloWorld_3_async_calls_log() {
         startTimer();
         CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> this.helloWorldService.hello());
         CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> this.helloWorldService.world());
         CompletableFuture<String> hiCompletableFuture = CompletableFuture.supplyAsync(() -> {
             delay(1000);
-            return "Hi Completatble";
+            return "HI CompletableFuture!";
         });
 
         String hw = hello.thenCombine(world, (h, w) -> {
             log("thenCombine h/w");
+            log(h+w);
             return h + w;
+
         }).thenCombine(hiCompletableFuture, (previous, current) -> {
             log("the Combine, previous/current");
-            return previous + current;
+            log(previous +" "+ current);
+            return previous +" "+ current;
         }).thenApply(s -> {
             log("thenApply");
             return s.toUpperCase();
