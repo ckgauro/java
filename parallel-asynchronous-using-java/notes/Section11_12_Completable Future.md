@@ -47,6 +47,7 @@
 
 ```
    -**thenAccept** takes a Consumer and returns a T=Void CF, i.e. one that does not carry a value, only the completion state.
+
    -**thenApply** on the other hand takes a Function and returns a CF carrying the return value of the function
 ```java
 CompletableFuture<Void>     thenAccept(Consumer<? super T> action)
