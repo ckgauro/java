@@ -53,13 +53,14 @@
 CompletableFuture<Void>     thenAccept(Consumer<? super T> action)
 <U> CompletableFuture<U>    thenApply(Function<? super T,? extends U> fn)
 ```
-** CompletableFuture and Reactive Programming
-- **Responsive** 
- - Fundamentally Asynchronous
- - Call returns immediately and the response will be sent when its available
-
 
 - [x] #Chapter 36 Transform Data using  "thenApply()"
+
+**thenApply()**
+- Completion Stage method
+- Transform the data from one from to another
+- Input is **Function** Functional Interface
+- Returns CompletableFuture<T>
 
   -[Run] com.gauro.demo.completablefuture.CompletableFutureHelloWorld
   
