@@ -64,7 +64,7 @@ CompletableFuture<Void>     thenAccept(Consumer<? super T> action)
 
   -[Run] com.gauro.demo.completablefuture.CompletableFutureHelloWorld
   
-- [] #Chapter 37 Unit Testing CompletableFuture using JUnit5
+- [x] #Chapter 37 Unit Testing CompletableFuture using JUnit5
   -[Run Test] com.gauro.demo.completablefuture.CompletableFutureHelloWorldTest.helloWorld
   
 - [] #Chapter 38 Combing independent Async Tasks using string to the output
