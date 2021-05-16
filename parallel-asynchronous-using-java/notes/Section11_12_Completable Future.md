@@ -1,4 +1,4 @@
-- [] #Section 11 and 12
+- [x] #Section 11 and 12
 - [x] #Chapter 34 Introduction to Completable Future
   - ***CompletableFuture***
     - Introduced in Java8

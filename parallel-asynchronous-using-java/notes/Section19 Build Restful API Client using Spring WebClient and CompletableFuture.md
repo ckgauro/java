@@ -4,4 +4,6 @@
 - [] #Chapter 60 Build the Rest Client using Spring WebClietn -part2
 - [] #Chapter 61 Combining CompletableFuture and RestClient
 - [] #Chapter 62 Dealing with Multiple CompletableFuture allOf()
+  {revise}
+  
 - [] #Chapter 63 Dealing with Multiple CompletableFuture anyOf()

@@ -9,8 +9,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
-import static com.gauro.demo.util.CommonUtil.startTimer;
-import static com.gauro.demo.util.CommonUtil.timeTaken;
+import static com.gauro.demo.util.CommonUtil.*;
 import static com.gauro.demo.util.LoggerUtil.log;
 
 /**
@@ -39,7 +38,10 @@ public class ProductServiceUsingCompletableFuture {
 
         Product product=cfProductInfo.thenCombine(cfReview, (productInfo,review)->new Product(productId,productInfo,review))
                 .join();
+
+
         timeTaken();
+
         return product;
     }
     public CompletableFuture<Product> retrieveProductDetails_CF(String productId) {
