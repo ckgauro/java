@@ -3,6 +3,7 @@ package com.gauro.demo.completablefuture;
 import com.gauro.demo.service.HelloWorldService;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
@@ -38,7 +39,10 @@ public class CompletableFutureHelloWorld {
     public String helloWorld_multiple_async_calls() {
         startTimer();
         CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> this.helloWorldService.hello());
+        //delay(1000);
         CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> this.helloWorldService.world());
+        delay(1000);
+        System.out.println("=======helloWorld_multiple_async_calls=======");
 
         String hw = hello.thenCombine(world, (h, w) -> h + w) //(first,second)
                 .thenApply(String::toUpperCase)
@@ -47,20 +51,41 @@ public class CompletableFutureHelloWorld {
         return hw;
     }
 
+    public String helloWorld_3_async_calls() {
+        startTimer();
+        CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> this.helloWorldService.hello());
+        CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> this.helloWorldService.world());
+        CompletableFuture<String> hiCompletableFuture = CompletableFuture.supplyAsync(() -> {
+            delay(100);
+            return " HI CompletableFuture!";
+        });
+
+        String hw = hello.thenCombine(world, (h, w) -> h + w)
+                .thenCombine(hiCompletableFuture, (previous, current) -> previous + current)
+                .thenApply(String::toUpperCase)
+                .join();
+        timeTaken();
+        return hw;
+
+    }
+
     public String helloWorld_3_async_calls_log() {
         startTimer();
         CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> this.helloWorldService.hello());
         CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> this.helloWorldService.world());
         CompletableFuture<String> hiCompletableFuture = CompletableFuture.supplyAsync(() -> {
             delay(1000);
-            return "Hi Completatble";
+            return "HI CompletableFuture!";
         });
 
         String hw = hello.thenCombine(world, (h, w) -> {
             log("thenCombine h/w");
+            log(h+w);
             return h + w;
+
         }).thenCombine(hiCompletableFuture, (previous, current) -> {
             log("the Combine, previous/current");
+            log(previous + current);
             return previous + current;
         }).thenApply(s -> {
             log("thenApply");
@@ -76,7 +101,7 @@ public class CompletableFutureHelloWorld {
         CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> this.helloWorldService.world());
         CompletableFuture<String> hiCompletableFuture = CompletableFuture.supplyAsync(() -> {
             delay(1000);
-            return "Hi Completatble";
+            return "Hi CompletableFuture!";
         });
         String hw = hello.thenCombineAsync(world, (h, w) -> {
             log("then Combine h/w");
@@ -102,7 +127,7 @@ public class CompletableFutureHelloWorld {
         CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> this.helloWorldService.world());
         CompletableFuture<String> hiCompletable = CompletableFuture.supplyAsync(() -> {
             delay(1000);
-            return "Hi CompleteableFuture";
+            return "Hi CompletableFuture";
         }, executorService);
 
         String hw = hello.thenCombine(world, (h, w) -> {
@@ -127,7 +152,7 @@ public class CompletableFutureHelloWorld {
         CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> this.helloWorldService.world());
         CompletableFuture<String> hiCompletable = CompletableFuture.supplyAsync(() -> {
             // delay(1000);
-            return "Hi CompleteableFuture";
+            return "Hi CompletableFuture!";
         }, executorService);
 
         String hw = hello.thenCombineAsync(world, (h, w) -> {
@@ -151,11 +176,11 @@ public class CompletableFutureHelloWorld {
         CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> this.helloWorldService.world());
         CompletableFuture<String> hiCompletableFuture = CompletableFuture.supplyAsync(() -> {
             delay(1000);
-            return " HI CompletableFuture!";
+            return "HI CompletableFuture!";
         });
         CompletableFuture<String> byeCompletableFuture = CompletableFuture.supplyAsync(() -> {
             delay(1000);
-            return "Hi CompletableFuture";
+            return " Bye!";
         });
         String hw = hello
                 .thenCombine(world, (h, w) -> h + w)
@@ -182,7 +207,7 @@ public class CompletableFutureHelloWorld {
         startTimer();
         CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> {
             delay(1000);
-            return "Hello";
+            return "Hello ";
         });
         CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(() -> {
             delay(1000);
@@ -197,29 +222,30 @@ public class CompletableFutureHelloWorld {
         timeTaken();
         return result;
     }
+
     public String anyOf() {
         startTimer();
-        CompletableFuture<String> db=CompletableFuture.supplyAsync(()->{
-           delay(1000);
-           log("response from db");
-           return "Hello World";
+        CompletableFuture<String> db = CompletableFuture.supplyAsync(() -> {
+            delay(1000);
+            log("response from db");
+            return "Hello World";
         });
-        CompletableFuture<String> restApi=CompletableFuture.supplyAsync(()->{
+        CompletableFuture<String> restApi = CompletableFuture.supplyAsync(() -> {
             delay(2000);
             log("Response from restAPI");
             return "Hello World";
 
         });
 
-        CompletableFuture<String> soapApi=CompletableFuture.supplyAsync(()->{
-           delay(3000);
-           log("response from soapAPI");
-           return  "Hello World";
+        CompletableFuture<String> soapApi = CompletableFuture.supplyAsync(() -> {
+            delay(3000);
+            log("response from soapAPI");
+            return "Hello World";
         });
-        List<CompletableFuture<String>> cfList=List.of(db,restApi,soapApi);
-        CompletableFuture<Object> cfAllOf=CompletableFuture.anyOf(cfList.toArray(new CompletableFuture[cfList.size()]));
-        String result=(String) cfAllOf.thenApply(v->{
-            if(v instanceof String){
+        List<CompletableFuture<String>> cfList = List.of(db, restApi, soapApi);
+        CompletableFuture<Object> cfAllOf = CompletableFuture.anyOf(cfList.toArray(new CompletableFuture[cfList.size()]));
+        String result = (String) cfAllOf.thenApply(v -> {
+            if (v instanceof String) {
                 return v;
             }
             return null;
@@ -228,6 +254,7 @@ public class CompletableFutureHelloWorld {
         return result;
 
     }
+
     public String helloWorld_1() {
 
         return CompletableFuture.supplyAsync(() -> helloWorldService.helloWorld())//  runs this in a common fork-join pool
@@ -235,13 +262,14 @@ public class CompletableFutureHelloWorld {
                 .join();
 
     }
+
     public CompletableFuture<String> complete(String input) {
-        CompletableFuture<String> completableFuture=new CompletableFuture<>();
-        completableFuture=completableFuture
+        CompletableFuture<String> completableFuture = new CompletableFuture<>();
+        completableFuture = completableFuture
                 .thenApply(String::toUpperCase)
-                .thenApply(result->result.length()+" - "+result);
+                .thenApply(result -> result.length() + " - " + result);
         completableFuture.complete(input);
-        return  completableFuture;
+        return completableFuture;
 
     }
 
@@ -250,8 +278,13 @@ public class CompletableFutureHelloWorld {
         HelloWorldService helloWorldService = new HelloWorldService();
         CompletableFuture.supplyAsync(() -> helloWorldService.helloWorld())
                 .thenApply(String::toUpperCase)
+                .thenApply(result -> {
+                    log("upper case result:" + result);
+                    delay(5000);
+                    return result.toLowerCase();
+                })
                 .thenAccept(result -> {
-                    log("result:" + result);
+                    log("Lower case result:" + result);
                 }).join();
         log("Done");
         delay(2000);
