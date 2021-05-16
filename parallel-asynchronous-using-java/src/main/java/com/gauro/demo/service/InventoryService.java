@@ -22,7 +22,7 @@ public class InventoryService {
         });
     }
     public Inventory retrieveInventory(ProductOption productOption) {
-        delay(500);
+        delay(1000);
         return Inventory.builder()
                 .count(2).build();
 

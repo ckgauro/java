@@ -18,7 +18,6 @@ public class CompletableFutureHelloWorldException {
     }
     public String helloWorld_3_async_calls_handle() {
         startTimer();
-        startTimer();
         CompletableFuture<String> hello = CompletableFuture.supplyAsync(() -> this.helloWorldService.hello());
         CompletableFuture<String> world = CompletableFuture.supplyAsync(() -> this.helloWorldService.world());
         CompletableFuture<String> hiCompletableFuture = CompletableFuture.supplyAsync(() -> {

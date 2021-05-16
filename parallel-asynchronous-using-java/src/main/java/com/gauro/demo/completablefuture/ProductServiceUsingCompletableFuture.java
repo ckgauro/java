@@ -68,6 +68,37 @@ public class ProductServiceUsingCompletableFuture {
         Product product = cfProductInfo
                 .thenCombine(cfReview, (productInfo, review) -> new Product(productId, productInfo, review))
                 .join(); // blocks the thread
+        System.out.println(product);
+        timeTaken();
+        return product;
+    }
+    public Product retrieveProductDetailsWithInventory_approach2(String productId) {
+
+        startTimer();
+        CompletableFuture<ProductInfo> cfProductInfo = CompletableFuture.supplyAsync(() -> productInfoService.retrieveProductInfo(productId))
+                .thenApply((productInfo -> {
+                    productInfo.setProductOptions(updateInventoryToProductOption_approach2(productInfo));
+                    //  productInfo.setProductOptions(updateInventoryToProductOption_approach3(productInfo));
+                    return productInfo;
+                }));
+
+        CompletableFuture<Review> cfReview = CompletableFuture.supplyAsync(() -> reviewService.retrieveReviews(productId))
+                .exceptionally((ex) -> {
+                    log("Handled the Exception in review Service : " + ex.getMessage());
+                    return Review.builder()
+                            .noOfReviews(0).overallRating(0.0)
+                            .build();
+                });
+
+        Product product = cfProductInfo
+                .thenCombine(cfReview, (productInfo, review) -> new Product(productId, productInfo, review))
+                .whenComplete((prod, ex) -> {
+                    log("Inside whenComplete : " + prod + "and the exception is " + ex);
+                    if (ex != null) {
+                        log("Exception in whenComplete is : " + ex);
+                    }
+                })
+                .join(); // blocks the thread
         timeTaken();
         return product;
     }
@@ -133,6 +164,7 @@ public class ProductServiceUsingCompletableFuture {
                 .join();
 
     }
+
 
     public static void main(String[] args) {
         ProductInfoService productInfoService = new ProductInfoService();
