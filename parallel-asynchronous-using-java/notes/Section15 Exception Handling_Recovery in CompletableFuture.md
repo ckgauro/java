@@ -14,6 +14,8 @@
   - [Run Test] com.gauro.demo.completablefuture.CompletableFutureHelloWorldExceptionTest.helloWorld_3_async_call_exceptionally
   
 - [x] #Chapter 51 Handle Exception using "whenComplete" function
-  {revise}
+  - **whenComplete()**
+    - Exception handler in CompletableFuture API
+    - Catches the Exception but does not recover from the exception
   
   - [Run Test] com.gauro.demo.completablefuture.CompletableFutureHelloWorldExceptionTest.helloWorld_3_async_calls_whenhandle
