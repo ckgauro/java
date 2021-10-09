@@ -1,4 +1,4 @@
-Progress cannot be changed for this item
+
 1. Course Overview
 
 2. Java versions history
