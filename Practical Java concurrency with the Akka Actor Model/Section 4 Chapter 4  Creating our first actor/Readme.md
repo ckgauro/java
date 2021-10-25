@@ -1,7 +1,905 @@
 10. Setting up an Akka project
+Create new Maven project chapter 4
+
+- Classic API
+- https://akka.io/docs/
+https://doc.akka.io/docs/akka/current/typed/index.html
+
+
 
 11. Creating our first actor - constructors
 
+ FirstSimpleBehavior  AbstarctBehavior
+
+
+- ActorContext
+-   
+
+```java
+ public static Behavior<String> create() {
+        return Behaviors.setup(FirstSimpleBehavior::new);
+    }
+```    
+
+Now we saw in the last chapter,
+
+there is an actor made up of a path,
+
+a message queue and a setup behaviours.
+
+The code that defines what an actor does
+
+when it receives a message.
+
+Akka takes care of most of this for us
+
+so in fact, the main part of the code we'll be writing
+
+is the code that defines an actor's behaviour
+
+and the messages that an actor can send or receive.
+
+So in fact, we don't really code up actors in Akka,
+
+really what we're creating are behaviours.
+
+And to do that, we need to create a class
+
+that extends abstract behaviour.
+
+So let's create our first class
+
+and that's going to be a standard Java class
+
+and I'm going to call this first one "FirstSimpleBehavior"
+
+now bear in mind, if you're British like me,
+
+you need to be using the American spelling
+
+of the word behaviour, there is no letter U in it.
+
+Okay, so our first simple behaviour class is going to be
+
+to extend an abstract class
+
+which is called AbstractBehavior.
+
+Now AbstractBehavior is a generic class type
+
+and the type that we put in here
+
+in angle bracket is the definition of
+
+what the messages will look like
+
+that this class can receive.
+
+So for our very first simple actor,
+
+we want to have a behaviour that is able to receive
+
+and process messages that are strings.
+
+So for now, let's just put in here that we are going
+
+to extend an abstract behaviour of type string.
+
+We'll be using other more complex messaging types
+
+as we progress through the course
+
+but for our simple actor, that's going to be fine.
+
+Now having extended abstract behaviour,
+
+there are a couple of things we will need to do
+
+to make this class compile.
+
+We need to implement a constructor
+
+because there is no default constructor
+
+in the abstract class and we need to implement a method
+
+which I'm going to call the message handler
+
+but let's get the IDE to create the two method stubs
+
+for us first of all.
+
+So I'm going to choose a implement methods
+
+and this first method
+
+which is a method called createReceive is
+
+the message handler.
+
+That code is going to run when a message is received
+
+but we also need the constructor.
+
+So let's get the idea to create the constructor
+
+for us as well.
+
+Now both of these method stubs are going
+
+to be a little bit of work
+
+so let's start with the constructor.
+
+Now what we're about to do here is actually going
+
+to become code that we will do
+
+with every behaviour that we create.
+
+At first glance, what we're about
+
+to type in might look quite complicated
+
+but it's worth spending a bit of time to understand this
+
+because we will be doing it a lot.
+
+So I'm going to build this code up a little bit slowly.
+
+Now we have a problem if we want to call this constructor.
+
+And that problem is that a constructor requires us
+
+to provide a parameter of type ActorContext.
+
+Now we will later on learn what this ActorContext object is
+
+but the problem is that when we want
+
+to instantiate this class we might not necessarily,
+
+easily be able to get a reference to this ActorContext.
+
+But there is a static factory method called behaviors.setup
+
+that we can use to get this ActorContext from.
+
+So in order to be able to call this constructor,
+
+we need to first call behaviors.setup.
+
+So what we'll do is make this constructor private
+
+and then we'll create a public static method
+
+that we can call and in the public static method,
+
+we'll call that behaviors.setup and then use that
+
+to call the constructor.
+
+That sounds complicated but let's type it in
+
+and you'll see what it's going to look like.
+
+So we're going to create a public static method.
+
+Now the return type is going to be a Behaviour
+
+which is a generic type and it's Behaviour of type string
+
+and actually that's the whole point of
+
+what we are trying to create here.
+
+By extending AbstractBehavior we're trying to create a class
+
+which is a Behaviour with the same message type defined.
+
+We'll need to import the Behaviour class.
+
+So let's do that.
+
+And we'll call this method "create".
+
+It won't need to take any parameters
+
+and then in here, what we want to do is call the constructor
+
+and return the results.
+
+Now as I mentioned, before we can call this constructor,
+
+we need an object of this ActorContext type.
+
+And the way we can get that is
+
+from the behaviors.setup static helper method.
+
+So that's going to look like this.
+
+It's Behaviours, and that's a class that again,
+
+we'll need to import.
+
+Now at this point, you might have noticed that
+
+as we do these imports, they appear and lots of them
+
+with the same class name but in different packages
+
+and in fact, in this example, this is a great example,
+
+the package which is akka.actor.typed.javadsl
+
+or akka.actor.typed.scaladsl, it is really important
+
+that you always import from the javadsl package.
+
+If you import from the scaladsl package,
+
+you will probably find the code won't compile
+
+and in fact, if at any point when you're using Akka
+
+and you're typing something in you think that was correct
+
+but you find the code isn't compiling,
+
+the first thing to check is
+
+that your imports are all javadsl import,
+
+they're not the scaladsl imports.
+
+The other thing to point out is that a lot
+
+of class types we are importing here exist
+
+in both the akka.actor.typed package namespace
+
+and in the akka.actor package namespace.
+
+So always make sure again, the typed appears somewhere
+
+in the package name.
+
+Okay but let's go back to where we were.
+
+So we were importing Behaviours from javadsl
+
+and this has a method called setup
+
+and this method takes a lambda.
+
+So it's a single parameter lambda
+
+and the parameter name we'll call context.
+
+So let's put in the rest of the lambda structure
+
+and I'm just going to put semicolon in the end here.
+
+So this context object is the one
+
+that we want to get hold of
+
+to pass into our constructor up here.
+
+So what we should be able to do is within the body
+
+of the lambda, create a new first SimpleBehavior
+
+because that's within side the code,
+
+even though we've made our constructor private will
+
+be able to call it so I should be able to do
+
+in here a new FirstSimpleBehavior and the parameter is
+
+that context object to the parameter for our lambda.
+
+And actually this is what we're going to want to return
+
+from our public static method.
+
+So I really want to put a return in here
+
+and a return out here.
+
+Now I've said that the code we're writing here
+
+when you first look at it looks complicated
+
+but I hope what is clear is that
+
+when we want to instantiate an instance of Behaviour,
+
+at least our FirstSimpleBehavior example,
+
+we're not going to be calling new FirstSimpleBehavior.
+
+Instead what we're going to do is call this create method
+
+which is a static help method we've created
+
+and that create method is going to do the job
+
+of instantiating our FirstSimpleBehavior for us.
+
+Okay, we haven't written that.
+
+We can actually simplify this code very slightly.
+
+It's just a different way of writing this lambda,
+
+when it's a single parameter lambda.
+
+I'm not sure if you're familiar with this
+
+but I'm going to just put this in
+
+rather than calling new FirstSimpleBehavior
+
+and passing in the single parameter.
+
+What we can do is not give the parameter a name,
+
+we don't need to return keyword
+
+and then we'll call FirstSimpleBehavior, colon, colon,
+
+the method name which is new.
+
+And we don't need that context at the end there.
+
+So a slightly simpler way of writing that code
+
+and I'll just remove these pair curly
+
+and round bracket and semicolons.
+
+And that code is now compiling
+
+and that is going to be the boilerplate for any constructor
+
+for any actor that we're going to write.
+
+We're going to make the constructor private
+
+and create the static help method.
+
+Okay so that's creating the Behaviour.
+
+That's the definition needed to define an actor.
+
+Next, we'll have a look at this create receive method
+
+which is called the message handler,
+
+the code that's going to run when a message is received.
+
+--------------
+
 12. Creating our first actor - defining behaviors
 
+```java
+public Receive<String> createReceive() {
+        return newReceiveBuilder()
+                .onAnyMessage(message -> {
+                    System.out.println("I received the message : " + message);
+                    return this;
+                })
+                .build();
+    }
+```    
+
+
+This message handler method then,
+
+is the main part of the code we're writing
+
+when we work with actors.
+
+It's the definition of how an actor
+
+should respond to a message,
+
+what code do we want it to run?
+
+What processing do we want it to do
+
+whenever a message is received.
+
+Now this method as we can see
+
+needs to return an object of typer C.
+
+I don't want to say too much about
+
+this receive object just yet.
+
+We are going to talk about it in some depth
+
+a little later on in the course.
+
+But for now,
+
+what we will do in this method
+
+is again somewhat border plate code,
+
+we're going to use a help method
+
+called "New Receive Builder".
+
+So I'm going to code up here the simplest version
+
+that we can possibly do our message handler,
+
+and then we'll talk about it together.
+
+So rather than returning null,
+
+we're going to return,
+
+we'll call this help method "New Receive Builder".
+
+That New C Builder is a method on
+
+the abstract behaviour clause that
+
+we're extending from.
+
+So that's why we're able to call it.
+
+And then on this we're going to pull
+
+a method in a minute,
+
+which is going to be one of these
+
+one message or one message equals methods.
+
+I'll talk about those in a moment,
+
+but we're going to be chaining these together
+
+and the very last method in the chain
+
+is going to be the build method.
+
+So I'm going to put build semi-colon
+
+and actually we'll see that code will compile.
+
+That's not actually going to
+
+do anything just yet,
+
+it's going to ignore any message we might receive.
+
+We want to process a message and all we're doing
+
+in this processing is print it out
+
+to the consol.
+
+So what it will do is put one of those
+
+on message methods in here,
+
+and I'm going to choose for now
+
+the on any message method.
+
+We'll be looking at some of the
+
+different ones here a little later on.
+
+So the idea is that on any message
+
+whatever message is that's being received,
+
+we're going to run some code.
+
+And the code in here that we're going to run,
+
+is to find as a lander.
+
+So what we'll do is give the message a name,
+
+that's the parameter for lander,
+
+I'll call it message.
+
+And then in curly brackets,
+
+we can say what's the code we want to run.
+
+Now this code then is just going to be
+
+to print out the message to the consol.
+
+So I think what we'll do is a system out print
+
+line that says "I received the message"
+
+and then we'll add the message to
+
+the end of our print line.
+
+Now this code block within the lamdar
+
+does need to return something,
+
+again I'm going to talk about this
+
+return type in a bit of detail in
+
+a little bit later on.
+
+For now, I'm just going to return this.
+
+And again, we will go into nonstandard
+
+properly very soon,
+
+I promise you.
+
+So this code we've written here is our first
+
+basic behaviour completed.
+
+At first glance this is quite complicated looking code,
+
+but actually most of this is going to become
+
+boiler plate code and as long as you understand
+
+the basics of the constructor and how that works,
+
+and the principle of what the message handler
+
+is going to be doing,
+
+that's going to be good enough for now.
+
+We'll be creating lots more actors and
+
+writing lots more message handlers
+
+as we progress through the course.
+
+And as we do that,
+
+how these fit together,
+
+how these work is going to become completely clear.
+
+
+
+------------
+
 13. Instantiating actors and sending messages
+
+```java
+public class Main {
+    public static void main(String[] args) {
+       ActorSystem<String> actorSystem = ActorSystem.create(FirstSimpleBehavior.create(),"FirstActorSystem");
+       actorSystem.tell("Hello are you there?");
+       actorSystem.tell("This is the second message.");
+    }
+}
+
+```
+
+So we've defined our first behaviour,
+
+now let's create a main class, and we'll use that,
+
+we'll make it a runnable class so that we can
+
+instantiate an actor that uses his behaviour
+
+and we'll send it a message.
+
+So we'll start with a new class,
+
+(mouse clicking)
+
+and I'm just going to call this main,
+
+(typing)
+
+and I want this class to have a main method
+
+so that it's runnable, a public static void main method
+
+and then what we want to do in here to instantiate
+
+the first actor in our system;
+
+we need to create something called an ActorSystem.
+
+And we'll use a static helper method called
+
+ActorSystem.create to do this.
+
+So it's going to look something like this,
+
+we're going to say ActorSystem,
+
+(typing)
+
+which will lead to import, and notice here
+
+there are two versions; we must make sure we pick the one
+
+from akka.actor.typed,
+
+(mouse clicking)
+
+so the ActorSystem object has a helper method,
+
+it's a static method called create.
+
+(typing)
+
+And this method takes two parameters.
+
+The first is an instance of the behaviour
+
+that we want our actor to have.
+
+Well, if you recall, we've created our first simple behaviour
+
+and we gave it this static helper method called create
+
+to instantiate it.
+
+So actually, this is where we're going to call
+
+FirstSimpleBehavior.create.
+
+So let's put that in as our first parameter.
+
+(typing)
+
+And then the second parameter is going to be
+
+the name for an ActorSystem, so that's any string
+
+and we'll call this, I think, FirstActorSystem.
+
+(typing)
+
+So this helper method, this create method
+
+is going to return an object and it's an object of
+
+type ActorSystem, so let's store the results...
+
+(typing)
+
+and I'll call this one actorSystem.
+
+And then actually ActorSystem we've got here
+
+is a generic object type and so we should specify
+
+the generic type and it's the type that defines
+
+the messages our ActorSystem can receive.
+
+We said that our first simple behaviour can receive
+
+string messages so this is going to be an ActorSystem
+
+with a generic type of string.
+
+Now again, don't worry too much if it feels like
+
+we're going quite quickly,
+
+this doesn't make complete sense just yet
+
+because again, a lot of what we're doing here is going
+
+to become boiler plate code
+
+that we're going to write again and again.
+
+But hopefully, what we've now done
+
+is instantiated our actor.
+
+This ActorSystem object type that we've created,
+
+we can think of this as just being an actor.
+
+Actually it's a wrapper for the first actor that
+
+we are going to create; the entry point into akka.
+
+Later what we'll see that actors are going to create
+
+more actors, or child actors, but we'll always communicate
+
+through the very first actor that we create,
+
+the one that we call the ActorSystem.
+
+So the ActorSystem then is really an actor
+
+but with a few extra features
+
+that we're going to learn about a bit later on.
+
+We can use ActorSystem though,
+
+just as though it was a standard actor
+
+and any messages we send to it
+
+will get sent to the duty fork
+
+entry point actor that we are creating.
+
+So now that we've got an actor, we can send it a message
+
+by calling its tell method.
+
+So that will be actorSystem, the name of our actor,
+
+dot tell, and then we need to place an error message,
+
+that's going to be a string because this first actor
+
+can accept strings so I think we should put in
+
+something like, "Hello are you there?"
+
+(typing)
+
+So before we run this, let's just recap
+
+that what we've done then is we've instantiated an actor,
+
+that's this object here called ActorSystem.
+
+Actually, we used a helper method called ActorSystem.create
+
+to instantiate the actor for us,
+
+and what got instantiated here then
+
+is an actor with a name, a path,
+
+a message queue, and a set of behaviours.
+
+We had to provide that set of behaviours
+
+and we did that by instantiating with our
+
+special helper method, the behaviour that we defined;
+
+our first simple behaviour.
+
+So akka took our behaviour that we created
+
+and created an actor from it
+
+with all the other features we need;
+
+a path, a message queue, and all that kind of stuff
+
+and we will see some of that a little bit later on.
+
+But now, if we run this code it should work.
+
+So let's run it and see what happens.
+
+(mouse clicks)
+
+Okay, well we've got some logging information here,
+
+but importantly, printed out to the console is
+
+I received the message: Hello are you there?
+
+So that means we managed to create the actor,
+
+we sent the actor a message, and our behaviour
+
+received that message and processed it
+
+by printing it out to the console.
+
+So that's great, we've created our first actor,
+
+we've sent it a message,
+
+and we've seen the message being processed.
+
+Notice that our application is still running
+
+and it will carry on running until we shut it down.
+
+We're going to learn how to do that programmatically
+
+a little later on, but for now
+
+we'll need to stop the application after it's finished
+
+by clicking on the red box here.
+
+(mouse clicking)
+
+The idea is that the application will by default
+
+just run indefinitely because our actor
+
+can receive multiple messages.
+
+So in fact, we could just prove that by sending
+
+the actor a second message,
+
+let's go back to our main method
+
+and we'll do an ActorSystem.tell,
+
+(typing)
+
+"This is the second message."
+
+(typing)
+
+And we'll run this again...
+
+(mouse clicking)
+
+and we can see now both messages were received.
+
+Let's just stop this running.
+
+Okay, well this has I think been quite a tough chapter,
+
+there's been some code that we've written here
+
+that doesn't look too straightforward.
+
+But again, don't worry if you don't fully understand
+
+everything just yet; it will, I promise you,
+
+all make sense as we progress through the next few chapters.
+
+As long as you're comfortable at this stage,
+
+that we've defined the behaviours, the way an actor
+
+will respond to a message, and we've seen that we need to
+
+instantiate behaviours with a special format of the
+
+constructor, then that's a good start.
+
+Coming up in the next chapter,
+
+we'll see how an actor can create a second actor
+
+and then we'll have two actors
+
+and they'll be able to communicate with each other,
+
+and that's going to allow us to then, in due course,
+
+implement the big prime number example that we saw
+
+right at the beginning of this course.
+
+So I'll see you when you're ready in the next chapter.
