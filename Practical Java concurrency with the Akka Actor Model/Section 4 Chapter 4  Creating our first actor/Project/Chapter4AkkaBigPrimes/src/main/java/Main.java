@@ -7,6 +7,4 @@ public class Main {
         actorSystem.tell("Hello are you there?");
         actorSystem.tell("This is the second message.");
     }
-
-
 }
