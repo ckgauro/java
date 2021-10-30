@@ -1,3 +1,4 @@
+package com.gauro;
 import java.math.BigInteger;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -14,7 +15,9 @@ public class Results {
     }
     public void addPrime(BigInteger prime){
         synchronized (this){
-            prime.add(prime);
+         //   System.out.println("Prime : "+prime);
+            primes.add(prime);
+          //  System.out.println("Size : "+prime);
         }
     }
     public void print(){
