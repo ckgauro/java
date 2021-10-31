@@ -104,7 +104,7 @@ what we'll do. Create a new actor that has this first simple behavior. So we'll 
 There are two parameters, the first is an instance of the behavior and the second is a name. So the instance of the behavior is going to be a new first simple behavior. Well we're going to create that by calling the create method, the static method that we set up before, so that's going to be **FirstSimpleBehavior.create**, and then we need to give it a name. I think we'll call this one second actor. Now when we used **actorSystem.create**, what got returned was an instance of actor system. This time, what will get returned is an instance of an object of type actor ref. So it's going to be a actor ref, and it's a generic type, the type is string. Let's give it a name, second actor. And we'll just import actor ref, so when this line compiles, make sure you pick the one from **Akka** actor type, not just akka actor. And I'm just going to return this, at this point, so that our code is compiling. But let's just say a couple of things about what we have done here. We started with our first actor, which we called actor system. That has a name, a path, a message queue, and we created by generating an instance of our behavior class. Our first actor is actually creating a child actor, by calling the **spawn** method.
 
 
-<img ChildActors>
+<img src="images/childActor.png">
 
 So the child actor, which we in this instance, called second actor, also has a name, a path, a message queue, and a behavior. Now what's important to understand at this point, is that these two actors are completely separate. They will have their own state. In order to generate the second actor, we needed to create a new instance of our behavior object, so although they share the same behavior, meaning they're generated from the same underlying behavior class, the instance of the behavior class, that each of these actors have, will be different so in the state stored in this class, won't be seen by this actor, and that's what makes this system completely threat safe. Although these actors share the same behavior, they'll do the same sorts of things if they receive a message, any internal state of the actor, will be unique to that actor. So we've generated this second actor, and this is the first time we've seen actor ref object type. Well this is just simply a reference to an actor and actually actor ref is the main object type we work with when we are dealing with actors. 
 
@@ -122,7 +122,7 @@ My path is akka://FirstActorSystem/user/secondActor
 ```
 
 ------------------
-16. Actor paths
+### 16. Actor paths
 
 ### Run the Main program.
 
@@ -140,7 +140,7 @@ Any actors created by the user guardian, will have a path that starts with the c
 
 ------------------
 
-17. Starting the big prime example
+### 17. Starting the big prime example
 
 ```java
 public class WorkerBehavior extends AbstractBehavior<String> {
