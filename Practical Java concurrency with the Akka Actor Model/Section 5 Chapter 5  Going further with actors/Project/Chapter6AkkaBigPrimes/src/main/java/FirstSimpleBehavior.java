@@ -18,18 +18,24 @@ public class FirstSimpleBehavior extends AbstractBehavior<String> {
     public Receive<String> createReceive() {
         return newReceiveBuilder()
                 .onMessageEquals("say hello",()->{
+
                     System.out.println("Hello");
+                    Thread.sleep(4000);
                     return this;
                 })
                 .onMessageEquals("who are you",()->{
                     System.out.println("My path is "+ getContext().getSelf().path());
                     return this;
                 })
-                .onMessageEquals("create a child",()->{
-                    ActorRef<String> secondActor=getContext().spawn(FirstSimpleBehavior.create(),"secondActor");
-                    secondActor.tell("who are you");
+                .onAnyMessage(message->{
+                    System.out.println("I received the message :"+ message);
                     return this;
                 })
+//                .onMessageEquals("create a child",()->{
+//                    ActorRef<String> secondActor=getContext().spawn(FirstSimpleBehavior.create(),"secondActor");
+//                    secondActor.tell("who are you");
+//                    return this;
+//                })
                 .build();
     }
 }

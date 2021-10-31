@@ -4,9 +4,65 @@ chapter 5
 ```java
 @Override
 public Receive<String> createReceive() {
+return newReceiveBuilder()
+                .onMessageEquals("say hello",()->{
+
+                    System.out.println("Hello");
+                    Thread.sleep(4000);
+                    return this;
+                })
+                .onMessageEquals("who are you",()->{
+                    System.out.println("My path is "+ getContext().getSelf().path());
+                    return this;
+                })
+                .onAnyMessage(message->{
+                    System.out.println("I received the message :"+ message);
+                    return this;
+                })
+                .build();
+    }
+```
+### Main
+```java
+import akka.actor.typed.ActorSystem;
+public class Main {
+    public static void main(String[] args) {
+        ActorSystem<String> actorSystem=ActorSystem.create(FirstSimpleBehavior.create(),"FirstActorSystem");
+        actorSystem.tell("say hello");
+        actorSystem.tell("who are you");
+        actorSystem.tell("This is the second message.");
+    }
+}
+```
+Hello again, in the last chapter, we created our first actor,and we sent that actor a message.The actor did something with that message.It printed it out to the console.Now, if we want to implement the big primes example in **Akka**, we're going to need more than one actor.And we'll want the actors to be able to do some real work to calculate the big prime numbers.Creating a new actor from an existing actor is quite easy to do, but there are a couple of small things we will need to know about before we can start coding that up.
+
+The first of these is to learn a bit more about this new receive builder function that we used in our behavior class. In this function, so far we've used the on any message method to match any kind of message.It actually didn't matter what the string was we sent to this actor even on a null string. It meant that this print line code would have run.If I put a dot in here after our new receive builder. we'll see that there are some alternatives that we can use.The most general is the on message method.This let's us define a specific class type to match against and we will come to that version,we'll look at that a little later on.For now, we're going to be interested in the other option, which is onMessageEquals.Because we're working on a set of behaviors that responds to string messages. It makes sense to say if the string is the phrase create a child, 
+
+for example,then we want to run one piece of code.But if it's print to the console we do something else. So we can use the on message equals method to create a chain of instructions and **Akka** will execute the first matching entry in this chain So if, for example, we do something like **onMessageEquals** and in quotes "create a child."  and then there'll be some kind of lambda to go in here. I'm just going to put in an empty lambda for the moment, just to signify that we need to put something in here. Well, if we sent a message that says, "create a child," then this lambda would get executed. Any other kind of message would mean that this lambda gets executed because **Akka** will match against the first of these methods that matches that is able to process the message. If we put these the other way around, If we said **onAnyMessage**, and then **onMessageEquals** well, this second version would never get to run because **onAnyMessage** will always match any kind of message. But we can create these chains so we could say if the message is **"create a child"** do this if the message is, say, **"print your name"**  we'll do something else and then, maybe, have this catch all at the bottom to say we'll do that with any other kind of message. So let's see this working. I think we'll start with a message that says **"say hello."**  And if the actor receives a message like this what we'll want to do is print out to the console. 
+
+So let's put in here something like a system out print line **"hello"** something nice and simple. And we always have to return something from our lambdas and, for now, we're always just going to return this. Again, I mentioned this before but we will look at this return type a little later on. So every time this actor receives a message if the message is the string **"say hello"** we're going to print out the word hello to the console. We could also do something like, **"who are you"** as the message,  and actually let's use this as an opportunity to find out the path of the actor. So, in here, what we'll do is a system out print line and the way that we find out the path is I'm not going to explain this construct, we'll just use it for the moment, so follow along with me. We'll put in a system out print line of **"My path is"** and then we're gonna add on the end of here. We start by calling a method called **getContext** and then a method on that called getSelf, and then a method on that called path. Again, I will explain that a little later on. We just want to see what the path is of the actor so we can understand roughly what that's going to look like. Again, we'll need to return something so we'll return this from that lambda and then, we'll have that catch all message at the end that says I received the message and prints it out. So let's try and test this so we can see these different messages being matched and working So, in our main method, we'll start by sending the message that says **"say hello"** Then we'll send in another message that says who are you, and we need to make sure we get the case of this right because, obviously, we're matching strings here so string equals is going to be used two strings will only be equal, if the cases are the same so get that exactly right as well And then, we'll leave in **"This is the second message."** I know it's the third message now, but that should make the third of those matchers be executed the third lambda in the chain. 
+
+### Run the Main program
+Output will be
+```txt
+Hello
+My path is akka://FirstActorSystem/user
+I received the message :create a child
+I received the message :This is the second message.
+```
+
+
+------------------
+### 15. Creating child actors
+<img ChildActors>
+
+```java
+    @Override
+    public Receive<String> createReceive() {
         return newReceiveBuilder()
                 .onMessageEquals("say hello",()->{
                     System.out.println("Hello");
+                    Thread.sleep(4000);
                     return this;
                 })
                 .onMessageEquals("who are you",()->{
@@ -19,51 +75,7 @@ public Receive<String> createReceive() {
                     return this;
                 })
                 .build();
-}
-```
-### Main
-```java
-import akka.actor.typed.ActorSystem;
-public class Main {
-public static void main(String[] args) {
- ActorSystem<String> actorSystem = ActorSystem.create(FirstSimpleBehavior.create(),"FirstActorSystem");
- actorSystem.tell("say hello");
- actorSystem.tell("who are you");
- actorSystem.tell("create a child");
- actorSystem.tell("This is the second message.");
-}
-}
-```
-Hello again, in the last chapter, we created our first actor,and we sent that actor a message.The actor did something with that message.It printed it out to the console.Now, if we want to implement the big primes example in Akka, we're going to need more than one actor.And we'll want the actors to be able to do some real work to calculate the big prime numbers.Creating a new actor from an existing actor is quite easy to do, but there are a couple of small things we will need to know about before we can start coding that up.
-
-The first of these is to learn a bit more about this new receive builder function that we used in our behavior class. In this function, so far we've used the on any message method to match any kind of message.It actually didn't matter what the string waswe sent to this actor even on a null stringit meant that this print line code would have run.If I put a dot in here after our new receive builderwe'll see that there are some alternatives that we can use.The most general is the on message method.This let's us define a specific class typeto match against and we will come to that version,we'll look at that a little later on.For now, we're going to be interestedin the other option, which is onMessageEquals.Because we're working on a set of behavioursthat responds to string messagesit makes sense to say if the stringis the phrase create a child, for example,then we want to run one piece of code.But if it's print to the console we do something else. So we can use the on message equals method to create a chain of instructions and Aker will execute the first matching entry in this chain So if, for example, we do something like onMessageEquals and in quotes "create a child." (typing) and then there'll be some kind of lambda to go in here. I'm just going to put in an empty lambda for the moment, just to signify that we need to put something in here. Well, if we sent a message that says, "create a child," then this lambda would get executed. Any other kind of message would mean that this lambda gets executed because Aker will match against the first of these methods that matches that is able to process the message. If we put these the other way around, If we said onAnyMessage, and then onMessageEquals well, this second version would never get to run because onAnyMessage will always match any kind of message. But we can create these chains so we could say if the message is "create a child" do this if the message is, say, "print your name" (typing) we'll do something else and then, maybe, have this catch all at the bottom to say we'll do that with any other kind of message. So let's see this working. I think we'll start with a message that says "say hello." (typing) And if the actor receives a message like this what we'll want to do is print out to the console. So let's put in here something like a system out print line "hello," something nice and simple. And we always have to return something from our lambdas and, for now, we're always just going to return this. Again, I mentioned this before but we will look at this return type a little later on. So every time this actor receives a message if the message is the string "say hello" we're going to print out the word hello to the console. We could also do something like, "who are you" as the message, (typing) and actually let's use this as an opportunity to find out the path of the actor. So, in here, what we'll do is a system out print line and the way that we find out the path is I'm not going to explain this construct, we'll just use it for the moment, so follow along with me. We'll put in a system out print line of "My path is" and then we're gonna add on the end of here. We start by calling a method called getContext and then a method on that called getSelf, and then a method on that called path. Again, I will explain that a little later on. We just want to see what the path is of the actor so we can understand roughly what that's going to look like. Again, we'll need to return something so we'll return this from that lambda and then, we'll have that catch all message at the end that says I received the message and prints it out. So let's try and test this so we can see these different messages being matched and working So, in our main method, we'll start by sending the message that says "say hello" (typing) Then we'll send in another message that says who are you, and we need to make sure we get the case of this right because, obviously, we're matching strings here so string equals is going to be used two strings will only be equal, if the cases are the same so get that exactly right as well And then, we'll leave in "This is the second message." I know it's the third message now, but that should make the third of those matchers be executed the third lambda in the chain. 
-
-------------------
-15. Creating child actors
-<img ChildActors>
-
-```java
- public Receive<String> createReceive() {
-return newReceiveBuilder()
-.onMessageEquals("say hello" , () -> {
-System.out.println("Hello");
-return this;
-})
-.onMessageEquals("who are you" , () -> {
-System.out.println("My path is " + getContext().getSelf().path());
-return this;
-})
-.onMessageEquals("create a child", ()-> {
-ActorRef<String> secondActor = getContext().spawn(FirstSimpleBehavior.create(), "secondActor");
-secondActor.tell("who are you");
-return this;
-})
-.onAnyMessage(message -> {
-System.out.println("I received the message : " + message);
-return this;
-})
-.build();
-}
+    }
 ```
 ```java
 public class Main {
