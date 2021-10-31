@@ -22,6 +22,7 @@ public class FirstSimpleBehavior extends AbstractBehavior<String> {
         return newReceiveBuilder()
                 .onAnyMessage(message -> {
                     System.out.println("I received the message :" + message);
+                    Thread.sleep(4000);
                     return this;
                 })
                 .build();
