@@ -1,4 +1,4 @@
-[POm.xml](https://github.com/ckgauro/java/blob/master/Practical%20Java%20concurrency%20with%20the%20Akka%20Actor%20Model/Section%204%20Chapter%204%20%20Creating%20our%20first%20actor/Project/Chapter4AkkaBigPrimes/pom.xml)
+[Pom.xml](https://github.com/ckgauro/java/blob/master/Practical%20Java%20concurrency%20with%20the%20Akka%20Actor%20Model/Section%204%20Chapter%204%20%20Creating%20our%20first%20actor/Project/Chapter4AkkaBigPrimes/pom.xml)
 
 ```xml
 <properties>
