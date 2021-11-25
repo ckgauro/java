@@ -31,4 +31,19 @@ public class ManagerBehavior extends AbstractBehavior<String> {
                 })
                 .build();
     }
+
+//    @Override
+//    public Receive<String> createReceive() {
+//        return newReceiveBuilder()
+//                .onAnyMessage(message -> {
+//                    IntStream.range(0, 19).forEach(i -> {
+//                                ActorRef<String> worker = getContext().spawn(WorkerBehavior.create(), message+"_worker" + i);
+//                                worker.tell("start");
+//                            }
+//                    );
+//                    return this;
+//
+//                })
+//                .build();
+//    }
 }

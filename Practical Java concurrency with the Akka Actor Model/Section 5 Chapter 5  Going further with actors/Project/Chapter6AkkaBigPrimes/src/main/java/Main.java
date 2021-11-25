@@ -15,6 +15,12 @@ public class Main {
         System.out.println("Start==>");
         ActorSystem<String> bigPrimes=ActorSystem.create(ManagerBehavior.create(),"BigPrimes");
         bigPrimes.tell("start");
+
+//        ActorSystem<String> bigPrimes2=ActorSystem.create(ManagerBehavior.create(),"BigPrimes2");
+//        bigPrimes.tell("start2");
+//
+//        ActorSystem<String> bigPrimes3=ActorSystem.create(ManagerBehavior.create(),"BigPrimes3");
+//        bigPrimes.tell("start3");
         System.out.println("Finished from main");
     }
 }

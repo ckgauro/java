@@ -21,6 +21,7 @@ public class WorkerBehavior extends AbstractBehavior<String> {
                 .onMessageEquals("start",()->{
                     BigInteger bigInteger=new BigInteger(2000, new Random());
                     System.out.println(bigInteger.nextProbablePrime());
+                    Thread.sleep(2000);
                     return this;
                 })
                 .build();
