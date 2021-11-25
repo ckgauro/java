@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FirstSimpleBehavior extends AbstractBehavior<String> {
 
-    public FirstSimpleBehavior(ActorContext<String> context) {
+    private FirstSimpleBehavior(ActorContext<String> context) {
         super(context);
     }
 
@@ -23,6 +23,7 @@ public class FirstSimpleBehavior extends AbstractBehavior<String> {
                 .onAnyMessage(message -> {
                     System.out.println("I received the message :" + message);
                     Thread.sleep(4000);
+                    System.out.println("Ends  message :" + message);
                     return this;
                 })
                 .build();
