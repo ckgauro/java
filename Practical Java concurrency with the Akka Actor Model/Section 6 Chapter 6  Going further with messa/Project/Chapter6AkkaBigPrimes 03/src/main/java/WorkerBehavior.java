@@ -42,9 +42,11 @@ public class WorkerBehavior  extends AbstractBehavior<WorkerBehavior.Command> {
         return newReceiveBuilder()
                 .onAnyMessage(command->{
                     if(command.getMessage().equals("start")){
-                        BigInteger bigInteger=new BigInteger(2000, new Random());
+                        if(prime==null){
+                            BigInteger bigInteger=new BigInteger(2000, new Random());
+                            prime=bigInteger.nextProbablePrime();
+                        }
                         //command.getSender().tell(bigInteger.toString());
-                        prime=bigInteger.nextProbablePrime();
                        // System.out.println(prime);
                         command.getSender().tell(new ManagerBehavior.ResultCommand(prime) {
                         });

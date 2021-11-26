@@ -40,7 +40,7 @@ public class ManagerBehavior extends AbstractBehavior<ManagerBehavior.Command> {
             return prime;
         }
     }
-    public ManagerBehavior(ActorContext<Command> context) {
+    private ManagerBehavior(ActorContext<Command> context) {
         super(context);
     }
 
@@ -51,6 +51,7 @@ public class ManagerBehavior extends AbstractBehavior<ManagerBehavior.Command> {
     @Override
     public Receive<Command> createReceive() {
         return newReceiveBuilder()
+
                 .onMessage(InstructionCommand.class, command->{
                     if(command.getMessage().equals("start")){
                         IntStream.rangeClosed(0,19).forEach(i->{

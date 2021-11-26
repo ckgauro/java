@@ -29,7 +29,7 @@ public class WorkerBehavior  extends AbstractBehavior<WorkerBehavior.Command> {
             return sender;
         }
     }
-    public WorkerBehavior(ActorContext<Command> context) {
+    private WorkerBehavior(ActorContext<Command> context) {
         super(context);
     }
 
@@ -43,8 +43,10 @@ public class WorkerBehavior  extends AbstractBehavior<WorkerBehavior.Command> {
                 .onAnyMessage(command->{
                     if(command.getMessage().equals("start")){
                         BigInteger bigInteger=new BigInteger(2000, new Random());
+
                         //command.getSender().tell(bigInteger.toString());
                         prime=bigInteger.nextProbablePrime();
+                        Thread.sleep(2000);
                        // System.out.println(prime);
                         command.getSender().tell(new ManagerBehavior.ResultCommand(prime) {
                         });
