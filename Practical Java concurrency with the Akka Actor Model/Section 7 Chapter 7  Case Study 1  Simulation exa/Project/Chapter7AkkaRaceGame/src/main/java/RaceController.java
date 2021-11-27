@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class RaceController extends AbstractBehavior<RaceController.Command> {
     public interface Command extends Serializable{}
@@ -49,7 +50,8 @@ public class RaceController extends AbstractBehavior<RaceController.Command> {
     private Object TIMER_KEY;
     private void displayRace(){
         int displayLength=160;
-        for (int i = 0; i < 50; ++i) System.out.println();
+        //for (int i = 0; i < 50; ++i) System.out.println();
+        IntStream.rangeClosed(0,15).forEach(i->System.out.println(" "));
         System.out.println("Race has been running for " + ((System.currentTimeMillis() - start) / 1000) + " seconds.");
         System.out.println("    " + new String (new char[displayLength]).replace('\0', '='));
         int i = 0;
@@ -76,6 +78,7 @@ public class RaceController extends AbstractBehavior<RaceController.Command> {
                     });
                 })
                 .onMessage(GetPositionsCommand.class,mesage->{
+                    System.out.println("GetPositionsCommand ===> Called");
                     for(ActorRef<Racer.Command> racer: currentPositions.keySet()){
                         racer.tell(new Racer.PositionCommand(getContext().getSelf()));
                         displayRace();
