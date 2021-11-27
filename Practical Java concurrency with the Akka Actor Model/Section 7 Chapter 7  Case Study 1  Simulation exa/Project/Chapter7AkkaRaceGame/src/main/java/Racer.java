@@ -23,10 +23,6 @@ public class Racer extends AbstractBehavior<Racer.Command> {
         public int getRaceLength() {
             return raceLength;
         }
-
-        public void setRaceLength(int raceLength) {
-            this.raceLength = raceLength;
-        }
     }
     public static class PositionCommand implements Command{
         private static final long serialVersionUID=1L;
@@ -87,7 +83,23 @@ public class Racer extends AbstractBehavior<Racer.Command> {
 
     @Override
     public Receive<Command> createReceive() {
-        return null;
+        return newReceiveBuilder()
+                .onMessage(StartCommand.class,message->{
+                    this.raceLength= message.getRaceLength();
+                    this.random=new Random();
+                    this.averageSpeedAdjustmentFactor=random.nextInt(30)-10;
+                    return this;
+                })
+                .onMessage(PositionCommand.class,message->{
+                    determineNextSpeed();
+                    currentPosition+=getDistanceMovedPerSecond();
+                    if(currentPosition>raceLength) {
+                        currentPosition = raceLength;
+                    }
+                    message.getController().tell(new RaceController.RacerUpdateCommand(getContext().getSelf(), (int) currentPosition));
+                    return this;
+                })
+                .build();
     }
 
 
