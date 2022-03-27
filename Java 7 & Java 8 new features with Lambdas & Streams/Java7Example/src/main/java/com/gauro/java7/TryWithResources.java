@@ -1,4 +1,6 @@
-package com.gauro
+package com.gauro.java7;
+import util.CustomResource;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -15,6 +17,8 @@ public class TryWithResources {
         beforeJava7();
         System.out.println("------");
         withJava7();
+        System.out.println("------");
+        withCustomResInJava7();
 
     }
 
@@ -55,7 +59,10 @@ public class TryWithResources {
             * Sample implementation from Java 7
             * @throws Exception
 	 */
-    public static void withCustomResInJava7() {
+    public static void withCustomResInJava7() throws Exception {
+        try(CustomResource cr=new CustomResource();){
+            cr.readFromResource();
+        }
 
     }
 }

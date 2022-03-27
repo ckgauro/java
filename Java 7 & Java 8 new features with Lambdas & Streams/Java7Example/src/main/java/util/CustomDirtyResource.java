@@ -1,4 +1,4 @@
-package com.gauro.java7;
+package util;
 
 /**
  * @author Chandra
