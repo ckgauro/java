@@ -6,7 +6,7 @@ package util;
 public class CustomDirtyResource implements AutoCloseable{
     @Override
     public void close() throws Exception{
-        System.out.println("OOPs . It is very bad to have a NUllPointerException");
+      //  System.out.println("OOPs . It is very bad to have a NUllPointerException");
         throw new NullPointerException("OOPs . It is very bad to have a NUllPointerException");
 
     }
