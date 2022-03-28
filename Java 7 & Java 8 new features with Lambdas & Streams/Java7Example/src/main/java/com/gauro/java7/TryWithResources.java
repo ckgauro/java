@@ -2,7 +2,6 @@ package com.gauro.java7;
 import util.CustomResource;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -53,7 +52,6 @@ public class TryWithResources {
                 System.out.println(sCurrentLine);
             }
         }
-
     }
     /**
             * Sample implementation from Java 7
