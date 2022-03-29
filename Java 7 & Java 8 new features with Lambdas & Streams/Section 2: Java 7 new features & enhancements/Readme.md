@@ -619,6 +619,45 @@ It will still allow **FirstException** and **SecondException**s to be thrown fro
 
 ###  10. Easier Exception handling for reflective methods.md
 
+#### EASIER EXCEPTION HANDLING FOR REFLECTIVE METHODS
+
+-   Before Java 7 when we try to invoke methods inside a class using reflections, the developer will be forced to handle multiple exceptions related to reflections as shown below,
+```java
+ /**
+     * Before Java7
+     */
+
+    private static void beforeJava7() {
+        try{
+            Class.forName("com.gauro.java7.CatchingMultipleExceptions").getMethod("withJava7").invoke(null, new Object[]{});
+        }catch (InvocationTargetException | NoSuchMethodException | ClassNotFoundException | IllegalAccessException nex) {
+            LOGGER.log(Level.SEVERE,nex.toString());
+        }
+    }
+```    
+-   This is a very annoying and tedious job for the developers to handle all these exceptions. Ideally all these exceptions should have been grouped together.
+
+-   From Java 7, all the exceptions related to reflections are grouped by creating a common super class called **java.lang.ReflectiveOperationException**
+```java
+/**
+     * After Jva 7
+     */
+
+    private static void withJava7() {
+        try {
+            Class.forName("com.gauro.java7.CatchingMultipleExceptions").getMethod("withJava7").invoke(null, new Object[]{});
+        } catch (ReflectiveOperationException e) {
+            e.printStackTrace();
+            LOGGER.log(Level.SEVERE,e.toString());
+        }
+    }
+```    
+
+-   java.lang.ReflectiveOperationException (Super Class)
+    -   java.lang.ClassNotFoundException 
+    -   java.lang.NoSuchMethodException 
+    -   java.lang.InvocationTargetException
+    -   java.lang.IllegalAccessException
 
 Now, let's try to discuss another new feature which got introduced in Java seven, which is ObjectsClass, a brand new class, which is introducing Java seven itself.So don't confuse with the object class that we have, which is a super class of each class that we haveinside Java.So this is a plural form of it.It's objects.And this package is different.Instead of Java, that langue, it is Java dot util.So do not confuse with the other object that we have.So this is a plural form of it which presents inside the package Java that you do.So this objects class is a utility class which is created in Java seven, especially to have staticmethods, utility static methods that you may need while operating on objects.These methods include doing Nylex computing, hoshko, comparing different objects, returning a stringform of an object.Instead of you writing your own to string method, you can rely on the utility method available insidethis object's class.So that's one of the common scenario that you can think of.Most importantly, these objects class has introduced two new methods for MultiChoice.Both of them will draw Nalpas attraction if the given object is null.And at the same time, you can also customize your exception with whatever message you want to drawby providing inside your constructor.As you can see, there are two methods.One is required Nundle and you object to it, and when the object is null, it will draw null pointerexception.Otherwise it will continue to flow to execute and other methods and quite normal where it will acceptone more extra parameter which is matches itself.So this is a customizes that you can pass, which can be used when null point option is being loved.And it may look very weird and surprising for few developers.Why should I use these methods if the object anyway is null?My code will turn null pointer.But please remember, these new methods will bring a lot of control to behavior and easier debugging.When I say controlled behavior, your code readability will increase and at the same time it will alsohelp for easier debugging inside your code, especially using these methods.You can always validate whatever method parameters are constructor parameters that you have receivedbefore starting.You are hundreds of lines of code inside your methods.So that way you can avoid a lot of if conditions.And if there is a scenario where if the given object is null, I should not execute all further linesof code.I should straightaway throw an exception to the color.Then in such scenarios, these two methods will become very handy to the developers.If you go and see Java Framework Code, you can see a lot of places.These two methods are used by the Java developers team itself, which shows how useful these two methodsare.Now we have it understanding what is this object's class which is introducing Java seven.Let's try to go and see inside the call about this new class.As you can see, I came to a class called Requirement on here.First, let me open up and show you the objects class.As you can see here it is introducing one point seven and it has many static methods which will helpyou while dealing with objects like equals beep equals hash code hash value to string Kampai.And at the same time we have required normal methods at the end.Let's try to see the demo of required normal.As you can see, I have created a person object which is of type null and I'm calling a method processperson details with the null object of person.And my expectation here is whenever I receive another person for this matter, I should straightawaydraw an eloquent exception to the caller and should not proceed to the four lines inside the methodso that where I will use one of the Requena method by using objects, class and past the object thatI want to validate null check.And this is the customizes that I want to draw in the case of multipoint exception.So since this is the first line, my null will happen here and when the object is null, it will drawan Alpine transcription along with this message, which is my custom message, and it will not executethe four other lines in the method.So let me execute this.You will get another point reception, as you can see, and getting an eloquent exception.So this way you will have a better control on your code and at the same time better readability andbetter debugging also possible.With this new methods, again, these are simple brand new class that is introducing Java seven, pleasemake sure to use this recording on wherever is applicable inside your code and don't try to string methodinside your objects.You can always use a two string method available inside this utility class, which is objects classintroducing Java seven.Thank you.And see you in the next video by.
 ###  11. Objects Class & Null Checks .md
