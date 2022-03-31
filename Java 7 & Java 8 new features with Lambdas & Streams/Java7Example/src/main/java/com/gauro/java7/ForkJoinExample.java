@@ -1,5 +1,7 @@
-package com.gauro.java7;/**
-*
-*@author Chandra
-*/public class ForkJoinExample {
+package com.gauro.java7;
+
+/**
+ * @author Chandra
+ */
+public class ForkJoinExample {
 }
